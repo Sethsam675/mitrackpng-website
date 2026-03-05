@@ -24,13 +24,29 @@ nav {
 .nav-left {
     display: flex;
     align-items: center;
-    gap: 15px;
+    gap: 12px;
+    min-width: 0;
 }
 
-.logo {
-    height: 55px;
-    width: auto;
+.logo-link {
+    display: inline-flex;
+    align-items: center;
+    background: #ffffff;
+    padding: 6px 10px;
+    border-radius: 8px;
+    border: 1px solid #f5c400;
+    text-decoration: none;
 }
+
+
+.logo {
+    height: 48px;
+    width: auto;
+    display: block;
+    max-width: min(44vw, 220px);
+    object-fit: contain;
+}
+
 
 #nav-toggle {
     display: none;
@@ -204,7 +220,8 @@ footer {
     .hero p { font-size: 16px; }
     .card { padding: 20px; }
     .grid { gap: 18px; }
-    .logo { height: 45px; }
+    .logo-link { padding: 5px 8px; }
+    .logo { height: 40px; max-width: min(52vw, 180px); }
     .cta { padding: 40px 6%; }
 }
 
@@ -213,3 +230,4 @@ footer {
     .btn { padding: 10px 16px; }
     nav.open ul { right: 4%; width: calc(100% - 32px); }
 }
+
