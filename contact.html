@@ -29,20 +29,40 @@
 
 <section class="section">
   <div class="section-title"><h2>Send Us a Message</h2></div>
-  <div class="card">
-    <form action="#" method="POST">
-      <input type="text" name="name" placeholder="Full Name" required>
-      <input type="email" name="email" placeholder="Email Address" required>
-      <input type="tel" name="phone" placeholder="Phone Number" required>
-      <select name="service">
-        <option value="">Select Service</option>
-        <option value="gps">GPS Tracking</option>
-        <option value="cctv">CCTV Installation</option>
-        <option value="monitoring">24/7 Monitoring</option>
-        <option value="fleet">Fleet Management</option>
-      </select>
-      <textarea name="message" placeholder="Your Message" rows="4" required></textarea>
-      <button type="submit" class="btn btn-primary">Submit</button>
+  <div class="card contact-form-card">
+    <form action="#" method="POST" class="contact-form">
+      <div class="form-grid">
+        <div class="form-group">
+          <label for="full-name">Full Name</label>
+          <input id="full-name" type="text" name="name" placeholder="Enter your full name" autocomplete="name" required>
+        </div>
+        <div class="form-group">
+          <label for="email-address">Email Address</label>
+          <input id="email-address" type="email" name="email" placeholder="name@company.com" autocomplete="email" required>
+        </div>
+        <div class="form-group">
+          <label for="phone-number">Phone Number</label>
+          <input id="phone-number" type="tel" name="phone" placeholder="+675 ..." autocomplete="tel" required>
+        </div>
+        <div class="form-group">
+          <label for="service-select">Service Needed</label>
+          <select id="service-select" name="service" required>
+            <option value="" selected disabled>Select a service</option>
+            <option value="gps">GPS Tracking</option>
+            <option value="cctv">CCTV Installation</option>
+            <option value="monitoring">24/7 Monitoring</option>
+            <option value="fleet">Fleet Management</option>
+          </select>
+        </div>
+        <div class="form-group form-group-full">
+          <label for="message">Your Message</label>
+          <textarea id="message" name="message" placeholder="Tell us about your security or tracking needs" rows="5" required></textarea>
+        </div>
+      </div>
+      <div class="form-actions">
+        <p class="form-note">Our team usually responds within one business day.</p>
+        <button type="submit" class="btn btn-primary">Send Message</button>
+      </div>
     </form>
   </div>
 </section>
@@ -88,4 +108,5 @@
 
 </body>
 </html>
+
 

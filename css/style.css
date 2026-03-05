@@ -173,6 +173,97 @@ nav ul li a:hover {
     color: #cccccc;
 }
 
+/* CONTACT FORM */
+.contact-form-card {
+    max-width: 920px;
+    margin: 0 auto;
+}
+
+.contact-form {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+}
+
+.form-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 18px 20px;
+}
+
+.form-group {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.form-group-full {
+    grid-column: 1 / -1;
+}
+
+.form-group label {
+    font-size: 14px;
+    font-weight: 600;
+    color: #f2f2f2;
+}
+
+.form-group input,
+.form-group select,
+.form-group textarea {
+    width: 100%;
+    background: #0f0f0f;
+    border: 1px solid #2b2b2b;
+    border-radius: 8px;
+    color: #f2f2f2;
+    font-family: inherit;
+    font-size: 15px;
+    padding: 12px 14px;
+    transition: border-color 0.25s ease, box-shadow 0.25s ease;
+}
+
+.form-group textarea {
+    min-height: 140px;
+    resize: vertical;
+}
+
+.form-group input::placeholder,
+.form-group textarea::placeholder {
+    color: #8b8b8b;
+}
+
+.form-group input:focus,
+.form-group select:focus,
+.form-group textarea:focus {
+    outline: none;
+    border-color: #f5c400;
+    box-shadow: 0 0 0 3px rgba(245, 196, 0, 0.2);
+}
+
+.form-actions {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 16px;
+    flex-wrap: wrap;
+    border-top: 1px solid #2a2a2a;
+    padding-top: 18px;
+}
+
+.form-note {
+    color: #9e9e9e;
+    font-size: 14px;
+    line-height: 1.5;
+}
+
+.contact-form .btn {
+    margin: 0;
+}
+
+.contact-form .btn-primary {
+    border: none;
+    cursor: pointer;
+    min-width: 180px;
+}
 /* CTA */
 .cta {
     background: #000;
@@ -209,6 +300,9 @@ footer {
 }
 
 @media (max-width: 768px) {
+    .form-grid { grid-template-columns: 1fr; }
+    .form-actions { align-items: stretch; }
+    .contact-form .btn-primary { width: 100%; }
     nav { padding: 12px 6%; position: relative; }
     .nav-left { width: 100%; justify-content: space-between; }
     #nav-toggle { display: block; margin-left: auto; }
@@ -231,5 +325,6 @@ footer {
     .btn { padding: 10px 16px; }
     nav.open ul { right: 4%; width: calc(100% - 32px); }
 }
+
 
 
