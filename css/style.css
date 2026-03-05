@@ -40,10 +40,10 @@ nav {
 
 
 .logo {
-    height: 48px;
+    height: 53px;
     width: auto;
     display: block;
-    max-width: min(44vw, 220px);
+    max-width: min(44vw, 240px);
     object-fit: contain;
 }
 
@@ -221,7 +221,7 @@ footer {
     .card { padding: 20px; }
     .grid { gap: 18px; }
     .logo-link { padding: 5px 8px; }
-    .logo { height: 40px; max-width: min(52vw, 180px); }
+    .logo { height: 44px; max-width: min(52vw, 190px); }
     .cta { padding: 40px 6%; }
 }
 
@@ -230,4 +230,5 @@ footer {
     .btn { padding: 10px 16px; }
     nav.open ul { right: 4%; width: calc(100% - 32px); }
 }
+
 
