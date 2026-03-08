@@ -4,6 +4,13 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Contact | MiTrack PNG</title>
+<meta name="description" content="Contact MiTrack PNG for GPS tracking, CCTV installation, and 24/7 security monitoring consultations.">
+<meta property="og:title" content="Contact MiTrack PNG">
+<meta property="og:description" content="Get in touch with MiTrack PNG for tracking and security solutions in Papua New Guinea.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://mitrackpng.com/contact.html">
+<meta property="og:image" content="https://mitrackpng.com/assets/images/logo.png">
+<link rel="canonical" href="https://mitrackpng.com/contact.html">
 <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600;700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="css/style.css">
 </head>
@@ -30,7 +37,10 @@
 <section class="section">
   <div class="section-title"><h2>Send Us a Message</h2></div>
   <div class="card contact-form-card">
-    <form action="#" method="POST" class="contact-form">
+    <form id="contact-form" action="https://formsubmit.co/ajax/samseth889@gmail.com" method="POST" class="contact-form" data-ajax="true">
+      <input type="hidden" name="_subject" value="New enquiry from MiTrack PNG website">
+      <input type="hidden" name="_template" value="table">
+      <input type="hidden" name="_captcha" value="false">
       <div class="form-grid">
         <div class="form-group">
           <label for="full-name">Full Name</label>
@@ -63,6 +73,7 @@
         <p class="form-note">Our team usually responds within one business day.</p>
         <button type="submit" class="btn btn-primary">Send Message</button>
       </div>
+      <p id="form-status" class="form-status" aria-live="polite"></p>
     </form>
   </div>
 </section>
@@ -95,17 +106,6 @@
   <p>Hotline: +675 7543 6507 / +675 7939 5907 | Email: mitrack@mitrack.com.au</p>
 </footer>
 
-<script>
-  (function(){
-    var btn = document.getElementById('nav-toggle');
-    if (!btn) return;
-    btn.addEventListener('click', function(){
-      var nav = document.querySelector('nav');
-      if (nav) nav.classList.toggle('open');
-    });
-  })();
-</script>
-
+<script src="js/main.js"></script>
 </body>
 </html>
-

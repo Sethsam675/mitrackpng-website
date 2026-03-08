@@ -1,0 +1,27 @@
+name: Static Site QA
+
+on:
+  push:
+    branches: ["**"]
+  pull_request:
+
+jobs:
+  qa:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: Run HTML validation
+        run: python scripts/validate_html.py
+
+      - name: Run CSS lint
+        run: python scripts/lint_css.py
+
+      - name: Run link check
+        run: python scripts/check_links.py
