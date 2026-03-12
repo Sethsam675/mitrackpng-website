@@ -267,6 +267,15 @@ nav ul li a:hover {
     min-width: 180px;
 }
 
+
+.form-honeypot {
+    position: absolute;
+    left: -5000px;
+    width: 1px;
+    height: 1px;
+    opacity: 0;
+}
+
 .form-status {
     margin-top: 14px;
     font-size: 14px;

@@ -14,13 +14,14 @@ Static multi-page marketing site for MiTrack PNG.
 
 The contact form is wired to [FormSubmit](https://formsubmit.co/) via:
 
-- `https://formsubmit.co/ajax/samseth889@gmail.com`
+- `https://formsubmit.co/ajax/mitrack@mitrack.com.au`
 
 If you want to route messages to a different email provider/account:
 
 1. Update the `action` URL in `contact.html`.
-2. Keep `id="contact-form"` and `data-ajax="true"` for JS success/error UX.
-3. Verify the destination inbox with your provider (required by most services).
+2. Keep `id="contact-form"` and `data-ajax="true"` for JS success/error UX and network-fallback submit behavior.
+3. A hidden honeypot field (`_honey`) is included to reduce spam submissions.
+4. Verify the destination inbox with your provider (required by most services).
 
 ## Local development
 

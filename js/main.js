@@ -55,7 +55,9 @@
         setStatus('Thanks! Your message was sent successfully. We will contact you soon.', 'success');
       })
       .catch(function () {
-        setStatus('Sorry, we could not send your message. Please call us directly at +675 7543 6507.', 'error');
+        setStatus('Network issue detected. Retrying with standard submit...', 'pending');
+        contactForm.dataset.ajax = 'false';
+        contactForm.submit();
       })
       .finally(function () {
         if (submitBtn) {
