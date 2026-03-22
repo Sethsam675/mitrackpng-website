@@ -62,25 +62,6 @@ nav {
     top: 0;
     z-index: 100;
     animation: fade-down 0.6s ease both;
-    transition: opacity 0.35s ease, transform 0.35s ease, backdrop-filter 0.35s ease, box-shadow 0.35s ease;
-    will-change: opacity, transform;
-}
-
-nav.nav-hidden {
-    opacity: 0;
-    transform: translateY(-120%);
-    pointer-events: none;
-    box-shadow: none;
-}
-
-nav.nav-visible {
-    opacity: 1;
-    transform: translateY(0);
-    pointer-events: auto;
-}
-
-nav.nav-reminder {
-    animation: nav-reminder-slide 0.65s cubic-bezier(0.22, 1, 0.36, 1);
 }
 
 .nav-left {
@@ -216,7 +197,7 @@ nav ul li a:focus-visible {
     justify-content: center;
     text-align: center;
     transition: transform var(--transition-base), background-color var(--transition-base), color var(--transition-base), border-color var(--transition-base), box-shadow var(--transition-base);
-    color: #0c0c0c;
+    color: #329edf;
     min-height: 52px;
 }
 
@@ -478,19 +459,19 @@ footer {
 }
 
 .grid .card:nth-child(2) {
-    --reveal-delay: 0.08s;
+    --reveal-delay: 0.06s;
 }
 
 .grid .card:nth-child(3) {
-    --reveal-delay: 0.16s;
+    --reveal-delay: 0.10s;
 }
 
 .grid .card:nth-child(4) {
-    --reveal-delay: 0.24s;
+    --reveal-delay: 0.12s;
 }
 
 .grid .card:nth-child(5) {
-    --reveal-delay: 0.32s;
+    --reveal-delay: 0.20s;
 }
 
 /* CTA */
@@ -680,17 +661,6 @@ footer p + p {
         transform: translateY(-16px);
     }
     to {
-        opacity: 1;
-        transform: translateY(0);
-    }
-}
-
-@keyframes nav-reminder-slide {
-    0% {
-        opacity: 0;
-        transform: translateY(-130%);
-    }
-    100% {
         opacity: 1;
         transform: translateY(0);
     }
