@@ -197,7 +197,7 @@ nav ul li a:focus-visible {
     justify-content: center;
     text-align: center;
     transition: transform var(--transition-base), background-color var(--transition-base), color var(--transition-base), border-color var(--transition-base), box-shadow var(--transition-base);
-    color: #0c0c0c;
+    color: #329edf;
     min-height: 52px;
 }
 
