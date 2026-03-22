@@ -1,4 +1,39 @@
 (function () {
+  document.body.classList.add('page-ready');
+
+  function initRevealAnimations() {
+    var targets = document.querySelectorAll('.section, .cta, footer, .hero .hero-buttons, .hero h1, .hero p, .grid .card, .contact-form-card');
+    if (!targets.length) return;
+
+    for (var i = 0; i < targets.length; i += 1) {
+      targets[i].classList.add('reveal');
+    }
+
+    if (!('IntersectionObserver' in window)) {
+      for (var j = 0; j < targets.length; j += 1) {
+        targets[j].classList.add('is-visible');
+      }
+      return;
+    }
+
+    var observer = new IntersectionObserver(function (entries, revealObserver) {
+      entries.forEach(function (entry) {
+        if (!entry.isIntersecting) return;
+        entry.target.classList.add('is-visible');
+        revealObserver.unobserve(entry.target);
+      });
+    }, {
+      threshold: 0.16,
+      rootMargin: '0px 0px -8% 0px'
+    });
+
+    for (var k = 0; k < targets.length; k += 1) {
+      observer.observe(targets[k]);
+    }
+  }
+
+  initRevealAnimations();
+
   var navBtn = document.getElementById('nav-toggle');
   if (navBtn) {
     navBtn.addEventListener('click', function () {
