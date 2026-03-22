@@ -459,19 +459,19 @@ footer {
 }
 
 .grid .card:nth-child(2) {
-    --reveal-delay: 0.08s;
+    --reveal-delay: 0.06s;
 }
 
 .grid .card:nth-child(3) {
-    --reveal-delay: 0.16s;
+    --reveal-delay: 0.10s;
 }
 
 .grid .card:nth-child(4) {
-    --reveal-delay: 0.24s;
+    --reveal-delay: 0.12s;
 }
 
 .grid .card:nth-child(5) {
-    --reveal-delay: 0.32s;
+    --reveal-delay: 0.20s;
 }
 
 /* CTA */
