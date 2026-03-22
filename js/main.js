@@ -1,9 +1,118 @@
 (function () {
+  document.body.classList.add('page-ready');
+
+  var nav = document.querySelector('nav');
   var navBtn = document.getElementById('nav-toggle');
+  var navRevealTimer;
+  var navHideTimer;
+  var navReminderTimer;
+  var navReminderVisibleTimer;
+
+  function isNavLockedOpen() {
+    return !!(nav && (nav.matches(':hover, :focus-within') || nav.classList.contains('open')));
+  }
+
+  function clearNavTimers() {
+    clearTimeout(navRevealTimer);
+    clearTimeout(navHideTimer);
+    clearTimeout(navReminderTimer);
+    clearTimeout(navReminderVisibleTimer);
+  }
+
+  function showNav(withReminderMotion) {
+    if (!nav) return;
+    nav.classList.remove('nav-hidden');
+    nav.classList.add('nav-visible');
+    if (withReminderMotion) {
+      nav.classList.remove('nav-reminder');
+      void nav.offsetWidth;
+      nav.classList.add('nav-reminder');
+    } else {
+      nav.classList.remove('nav-reminder');
+    }
+  }
+
+  function hideNav() {
+    if (!nav || isNavLockedOpen()) return;
+    nav.classList.remove('nav-visible', 'nav-reminder');
+    nav.classList.add('nav-hidden');
+  }
+
+  function scheduleNavReminder() {
+    clearTimeout(navReminderTimer);
+    clearTimeout(navReminderVisibleTimer);
+    navReminderTimer = setTimeout(function () {
+      if (!nav || isNavLockedOpen()) return;
+      showNav(true);
+      navReminderVisibleTimer = setTimeout(function () {
+        if (!isNavLockedOpen()) hideNav();
+      }, 6000);
+    }, 20000);
+  }
+
+  function handleScrollActivity() {
+    if (!nav) return;
+    hideNav();
+    clearTimeout(navRevealTimer);
+    clearTimeout(navHideTimer);
+    clearTimeout(navReminderVisibleTimer);
+
+    navRevealTimer = setTimeout(function () {
+      showNav(false);
+      navHideTimer = setTimeout(function () {
+        if (!isNavLockedOpen()) hideNav();
+      }, 3500);
+    }, 180);
+
+    scheduleNavReminder();
+  }
+
+  if (nav) {
+    showNav(false);
+    scheduleNavReminder();
+    window.addEventListener('scroll', handleScrollActivity, { passive: true });
+    window.addEventListener('beforeunload', clearNavTimers);
+  }
+
+  function initRevealAnimations() {
+    var targets = document.querySelectorAll('.section, .cta, footer, .hero .hero-buttons, .hero h1, .hero p, .grid .card, .contact-form-card');
+    if (!targets.length) return;
+
+    for (var i = 0; i < targets.length; i += 1) {
+      targets[i].classList.add('reveal');
+    }
+
+    if (!('IntersectionObserver' in window)) {
+      for (var j = 0; j < targets.length; j += 1) {
+        targets[j].classList.add('is-visible');
+      }
+      return;
+    }
+
+    var observer = new IntersectionObserver(function (entries, revealObserver) {
+      entries.forEach(function (entry) {
+        if (!entry.isIntersecting) return;
+        entry.target.classList.add('is-visible');
+        revealObserver.unobserve(entry.target);
+      });
+    }, {
+      threshold: 0.16,
+      rootMargin: '0px 0px -8% 0px'
+    });
+
+    for (var k = 0; k < targets.length; k += 1) {
+      observer.observe(targets[k]);
+    }
+  }
+
+  initRevealAnimations();
+
   if (navBtn) {
     navBtn.addEventListener('click', function () {
-      var nav = document.querySelector('nav');
       if (nav) nav.classList.toggle('open');
+      if (nav && nav.classList.contains('open')) {
+        showNav(false);
+      }
     });
   }
 
