@@ -293,6 +293,22 @@ footer {
     color: var(--color-muted);
 }
 
+.card a,
+footer a {
+    color: inherit;
+    text-decoration-color: rgba(245, 196, 0, 0.55);
+    text-underline-offset: 3px;
+    transition: color var(--transition-base), text-decoration-color var(--transition-base);
+}
+
+.card a:hover,
+.card a:focus-visible,
+footer a:hover,
+footer a:focus-visible {
+    color: var(--color-accent);
+    text-decoration-color: currentColor;
+}
+
 .card .btn {
     margin-top: 18px;
 }

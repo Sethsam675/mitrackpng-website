@@ -38,7 +38,10 @@
   if (navBtn) {
     navBtn.addEventListener('click', function () {
       var nav = document.querySelector('nav');
-      if (nav) nav.classList.toggle('open');
+      if (!nav) return;
+
+      var isOpen = nav.classList.toggle('open');
+      navBtn.setAttribute('aria-expanded', String(isOpen));
     });
   }
 

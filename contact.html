@@ -11,6 +11,8 @@
 <meta property="og:url" content="https://mitrackpng.com/contact.html">
 <meta property="og:image" content="https://mitrackpng.com/assets/images/logo.png">
 <link rel="canonical" href="https://mitrackpng.com/contact.html">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600;700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="css/style.css?v=20260322">
 </head>
@@ -19,9 +21,9 @@
 <nav>
   <div class="nav-left">
     <a href="index.html" class="logo-link" aria-label="MiTrack PNG home"><img src="assets/images/logo.png" alt="MiTrack Logo" class="logo"></a>
-    <button id="nav-toggle" aria-label="Toggle menu">☰</button>
+    <button id="nav-toggle" aria-label="Toggle menu" aria-controls="primary-navigation" aria-expanded="false">☰</button>
   </div>
-  <ul>
+  <ul id="primary-navigation">
     <li><a href="index.html">Home</a></li>
     <li><a href="about.html">About</a></li>
     <li><a href="service.html">Services</a></li>
@@ -37,7 +39,7 @@
 <section class="section">
   <div class="section-title"><h2>Send Us a Message</h2></div>
   <div class="card contact-form-card">
-    <form id="contact-form" action="https://formsubmit.co/ajax/samseth889@gmail.com" method="POST" class="contact-form" data-ajax="true">
+    <form id="contact-form" action="https://formsubmit.co/ajax/mitrack@mitrack.com.au" method="POST" class="contact-form" data-ajax="true">
       <input type="hidden" name="_subject" value="New enquiry from MiTrack PNG website">
       <input type="hidden" name="_template" value="table">
       <input type="text" name="_honey" class="form-honeypot" tabindex="-1" autocomplete="off">
@@ -84,11 +86,11 @@
   <div class="grid">
     <div class="card">
       <h4>Hotline</h4>
-      <p>+675 7543 6507 / +675 7939 5907</p>
+      <p><a href="tel:+67575436507">+675 7543 6507</a> / <a href="tel:+67579395907">+675 7939 5907</a></p>
     </div>
     <div class="card">
       <h4>Email</h4>
-      <p>mitrack@mitrack.com.au</p>
+      <p><a href="mailto:mitrack@mitrack.com.au">mitrack@mitrack.com.au</a></p>
     </div>
     <div class="card">
       <h4>Office</h4>
@@ -104,7 +106,7 @@
 
 <footer>
   <p>© 2026 MiTrack PNG | Powered by Pacific Corporate Security</p>
-  <p>Hotline: +675 7543 6507 / +675 7939 5907 | Email: mitrack@mitrack.com.au</p>
+  <p>Hotline: <a href="tel:+67575436507">+675 7543 6507</a> / <a href="tel:+67579395907">+675 7939 5907</a> | Email: <a href="mailto:mitrack@mitrack.com.au">mitrack@mitrack.com.au</a></p>
 </footer>
 
 <script src="js/main.js?v=20260322"></script>
