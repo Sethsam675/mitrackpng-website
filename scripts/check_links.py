@@ -4,7 +4,7 @@ from pathlib import Path
 from urllib.parse import urlparse
 import sys
 
-HTML_FILES = [Path('index.html'), Path('about.html'), Path('service.html'), Path('contact.html')]
+HTML_FILES = [Path('index.html'), Path('about.html'), Path('service.html'), Path('products.html'), Path('contact.html')]
 
 class LinkExtractor(HTMLParser):
     def __init__(self):

@@ -7,10 +7,11 @@ Static marketing website for MiTrack PNG tracking, CCTV, monitoring, and securit
 - `index.html` - Home page and primary service highlights.
 - `about.html` - Company mission and expertise.
 - `service.html` - Detailed services page.
+- `products.html` - Product capabilities and feature lists.
 - `contact.html` - Contact form and contact details.
 - `css/style.css` - Shared responsive styling.
 - `js/main.js` - Menu toggle, reveal animations, and contact form AJAX fallback.
-- `assets/images/` - Logo and background imagery.
+- `assets/images/` - Logo, background, and map imagery.
 - `scripts/` - Lightweight validation checks.
 
 ## Preview

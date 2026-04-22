@@ -2,7 +2,7 @@
   document.body.classList.add('page-ready');
 
   function initRevealAnimations() {
-    var targets = document.querySelectorAll('.section, .cta, footer, .hero .hero-buttons, .hero h1, .hero p, .grid .card, .contact-form-card');
+    var targets = document.querySelectorAll('.section, .cta, footer, .hero .hero-buttons, .hero h1, .hero p, .grid .card, .testimonial-card, .contact-form-card, .map-container, .motto-container, .about-card');
     if (!targets.length) return;
 
     for (var i = 0; i < targets.length; i += 1) {
@@ -33,6 +33,10 @@
   }
 
   initRevealAnimations();
+
+  if (window.lucide && typeof window.lucide.createIcons === 'function') {
+    window.lucide.createIcons();
+  }
 
   var navBtn = document.getElementById('nav-toggle');
   if (navBtn) {

@@ -3,7 +3,7 @@ from html.parser import HTMLParser
 from pathlib import Path
 import sys
 
-HTML_FILES = [Path('index.html'), Path('about.html'), Path('service.html'), Path('contact.html')]
+HTML_FILES = [Path('index.html'), Path('about.html'), Path('service.html'), Path('products.html'), Path('contact.html')]
 
 class Validator(HTMLParser):
     def __init__(self):
