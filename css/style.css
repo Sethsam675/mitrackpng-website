@@ -136,19 +136,19 @@ body::before {
     background: rgba(255,255,255,0.03);
 }
 
-/* INNER CONTAINER (NEW) */
+/* INNER CONTAINER */
 .container {
     max-width: 1200px;
     margin: 0 auto;
 }
 
-/* SPACING BETWEEN SECTIONS */
+/* SPACING */
 .section + .section {
     margin-top: 40px;
 }
 
 /* =========================
-   SECTION TITLE (FIXED)
+   SECTION TITLE
 ========================= */
 .section-title {
     text-align: center;
@@ -167,7 +167,7 @@ body::before {
 }
 
 /* =========================
-   GRID (FIXED)
+   GRID
 ========================= */
 .grid {
     display: grid;
@@ -180,7 +180,7 @@ body::before {
 }
 
 /* =========================
-   CARD (IMPROVED)
+   CARD
 ========================= */
 .card {
     padding: 25px;
@@ -274,6 +274,54 @@ body::before {
         rgba(245,196,0,0.1)
     );
     border-radius: 12px;
+}
+
+/* =========================
+   MAP CLEANUP (FINAL)
+========================= */
+
+.map-container {
+    max-width: 750px;
+    margin: 30px auto;
+    position: relative;
+    background: rgba(255,255,255,0.03);
+    padding: 15px;
+    border-radius: 12px;
+}
+
+.map-container img {
+    width: 100%;
+    border-radius: 10px;
+    display: block;
+}
+
+.map-info {
+    text-align: center;
+    margin-top: 15px;
+    font-size: 14px;
+    color: #aaa;
+}
+
+.map-point {
+    position: absolute;
+    width: 10px;
+    height: 10px;
+    background: var(--primary-gold);
+    border-radius: 50%;
+    animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+    0% { transform: scale(1); opacity: 1; }
+    50% { transform: scale(1.6); opacity: 0.6; }
+    100% { transform: scale(1); opacity: 1; }
+}
+
+.map-line {
+    position: absolute;
+    height: 2px;
+    background: var(--pcs-blue);
+    opacity: 0.5;
 }
 
 /* =========================
