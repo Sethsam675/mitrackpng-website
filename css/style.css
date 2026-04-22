@@ -76,19 +76,16 @@ nav {
 .logo-link {
     display: inline-flex;
     align-items: center;
-    background: #ffffff;
-    padding: 6px 10px;
-    border-radius: 8px;
-    border: 1px solid var(--color-accent);
+    padding: 0;
+    border-radius: 0;
     text-decoration: none;
-    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
 }
 
 .logo {
-    height: 53px;
+    height: 68px;
     width: auto;
     display: block;
-    max-width: min(44vw, 240px);
+    max-width: min(46vw, 310px);
     object-fit: contain;
 }
 
@@ -125,9 +122,9 @@ nav ul li a:focus-visible {
 .hero {
     position: relative;
     isolation: isolate;
-    overflow: hidden;
+    overflow: visible;
     min-height: clamp(360px, 72vh, 680px);
-    padding: clamp(72px, 10vw, 120px) 8%;
+    padding: clamp(72px, 10vw, 120px) 8% clamp(120px, 15vw, 190px);
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -138,9 +135,9 @@ nav ul li a:focus-visible {
 .hero::before {
     content: '';
     position: absolute;
-    inset: 0;
+    inset: 0 0 -240px;
     background-color: #050505;
-    background-image: linear-gradient(180deg, var(--color-overlay-top) 0%, var(--color-overlay-mid) 58%, var(--color-overlay-bottom) 100%), url('../assets/images/background_img.jpg');
+    background-image: linear-gradient(180deg, #050505 0%, rgba(5, 5, 5, 0.86) 8%, var(--color-overlay-top) 22%, var(--color-overlay-mid) 48%, rgba(5, 5, 5, 0.9) 76%, #050505 100%), url('../assets/images/background_img.jpg');
     background-position: center 38%;
     background-size: cover;
     background-repeat: no-repeat;
@@ -154,8 +151,9 @@ nav ul li a:focus-visible {
     content: '';
     position: absolute;
     inset: auto 0 0;
-    height: 140px;
-    background: linear-gradient(180deg, rgba(5, 5, 5, 0) 0%, rgb(5, 5, 5) 100%);
+    height: clamp(320px, 38vw, 520px);
+    transform: translateY(58%);
+    background: linear-gradient(180deg, rgba(5, 5, 5, 0) 0%, rgba(5, 5, 5, 0.72) 32%, #050505 74%, #050505 100%);
     z-index: -1;
 }
 
@@ -241,8 +239,15 @@ footer {
 }
 
 .section {
-    padding-top: clamp(52px, 8vw, 88px);
+    padding-top: clamp(42px, 7vw, 78px);
     padding-bottom: clamp(52px, 8vw, 88px);
+    position: relative;
+    z-index: 1;
+}
+
+.hero + .section {
+    margin-top: clamp(-190px, -15vw, -110px);
+    padding-top: clamp(100px, 13vw, 170px);
 }
 
 .section > *,
@@ -298,6 +303,7 @@ footer {
 
 .card p {
     color: var(--color-muted);
+    overflow-wrap: anywhere;
 }
 
 .card a,
@@ -306,6 +312,8 @@ footer a {
     text-decoration-color: rgba(245, 196, 0, 0.55);
     text-underline-offset: 3px;
     transition: color var(--transition-base), text-decoration-color var(--transition-base);
+    overflow-wrap: anywhere;
+    word-break: break-word;
 }
 
 .card a:hover,
@@ -320,9 +328,24 @@ footer a:focus-visible {
     margin-top: 18px;
 }
 
+.contact-grid {
+    grid-template-columns: repeat(auto-fit, minmax(min(100%, 280px), 1fr));
+}
+
 /* MAP */
 .map-section {
-    background: linear-gradient(180deg, rgba(8, 20, 34, 0.62) 0%, rgba(5, 5, 5, 0.95) 100%);
+    overflow: hidden;
+    background: linear-gradient(180deg, rgba(5, 5, 5, 0) 0%, rgba(5, 5, 5, 0.68) 34%, rgba(8, 20, 34, 0.62) 62%, rgba(5, 5, 5, 0.95) 100%);
+}
+
+.map-section::before {
+    content: '';
+    position: absolute;
+    inset: 0 0 auto;
+    height: clamp(150px, 20vw, 260px);
+    background: linear-gradient(180deg, rgba(5, 5, 5, 0) 0%, rgba(5, 5, 5, 0.9) 100%);
+    pointer-events: none;
+    z-index: -1;
 }
 
 .map-container {
@@ -390,18 +413,47 @@ footer a:focus-visible {
 /* PRODUCTS */
 .product-grid {
     align-items: stretch;
+    grid-template-columns: repeat(auto-fit, minmax(min(100%, 320px), 1fr));
+    gap: clamp(18px, 2.4vw, 28px);
 }
 
 .product-card {
     display: flex;
     flex-direction: column;
+    min-width: 0;
+    padding: clamp(22px, 2.6vw, 30px);
+}
+
+.product-card h4 {
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+    min-height: 56px;
+    margin-bottom: 14px;
+    font-size: clamp(1.05rem, 1.8vw, 1.2rem);
+    line-height: 1.35;
+    text-wrap: balance;
+}
+
+.product-card p {
+    font-size: 0.98rem;
+    line-height: 1.65;
+}
+
+.product-emoji {
+    width: 24px;
+    min-width: 24px;
+    font-size: 1.05rem;
+    line-height: 1;
+    margin-top: 4px;
+    text-align: center;
 }
 
 .product-functions h5 {
     color: var(--color-blue-light);
-    font-size: 13px;
-    margin-top: 18px;
-    margin-bottom: 8px;
+    font-size: 0.78rem;
+    margin-top: 16px;
+    margin-bottom: 10px;
     text-transform: uppercase;
     letter-spacing: 0.08em;
 }
@@ -409,7 +461,7 @@ footer a:focus-visible {
 .features {
     list-style: none;
     display: grid;
-    gap: 8px;
+    gap: 9px;
     margin: 0 0 4px;
 }
 
@@ -417,15 +469,17 @@ footer a:focus-visible {
     color: var(--color-muted);
     display: flex;
     align-items: flex-start;
-    gap: 10px;
+    gap: 9px;
+    font-size: 0.94rem;
+    line-height: 1.45;
 }
 
 .features svg {
-    width: 18px;
-    height: 18px;
+    width: 17px;
+    height: 17px;
     color: var(--color-accent);
     flex: 0 0 auto;
-    margin-top: 3px;
+    margin-top: 2px;
 }
 
 .product-card .btn {
@@ -826,7 +880,7 @@ footer p + p {
     .hero {
         min-height: 460px;
         padding-top: 64px;
-        padding-bottom: 64px;
+        padding-bottom: 140px;
     }
 
     .hero-buttons {
@@ -838,6 +892,10 @@ footer p + p {
         border-radius: 16px;
     }
 
+    .product-card h4 {
+        min-height: 0;
+    }
+
     .map-container {
         border-radius: 16px;
     }
@@ -845,18 +903,19 @@ footer p + p {
 
 @media (max-width: 420px) {
     .logo-link {
-        padding: 5px 8px;
+        max-width: 62vw;
     }
 
     .logo {
-        height: 44px;
-        max-width: min(52vw, 190px);
+        height: 52px;
+        max-width: 100%;
     }
 
     .hero {
         min-height: 420px;
         padding-left: 5%;
         padding-right: 5%;
+        padding-bottom: 120px;
     }
 
     .section,
