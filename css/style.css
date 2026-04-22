@@ -81,6 +81,8 @@ body::before {
 .hero {
     text-align: center;
     padding: 100px 20px 60px;
+    max-width: 900px;
+    margin: auto;
 }
 
 .hero h1 {
@@ -126,33 +128,51 @@ body::before {
 }
 
 /* =========================
-   SECTION
+   SECTION (FIXED)
 ========================= */
 .section {
-    width: 90%;
-    max-width: 1200px;
-    margin: 30px auto;
+    width: 100%;
+    padding: 80px 20px;
+    background: rgba(255,255,255,0.03);
 }
 
+/* INNER CONTAINER (NEW) */
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+/* SPACING BETWEEN SECTIONS */
+.section + .section {
+    margin-top: 40px;
+}
+
+/* =========================
+   SECTION TITLE (FIXED)
+========================= */
 .section-title {
     text-align: center;
-    margin-bottom: 40px;
+    margin-bottom: 50px;
 }
 
 .section-title h2 {
     color: var(--primary-gold);
+    font-size: 28px;
+    margin-bottom: 10px;
 }
 
 .section-title p {
     color: #aaa;
+    font-size: 14px;
 }
 
 /* =========================
-   GRID
+   GRID (FIXED)
 ========================= */
 .grid {
     display: grid;
-    gap: 25px;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 30px;
 }
 
 .product-grid {
@@ -160,17 +180,17 @@ body::before {
 }
 
 /* =========================
-   CARD
+   CARD (IMPROVED)
 ========================= */
 .card {
     padding: 25px;
     border-radius: 12px;
-    background: rgba(255,255,255,0.04);
+    background: rgba(255,255,255,0.05);
     transition: 0.3s;
 }
 
 .card:hover {
-    transform: translateY(-8px);
+    transform: translateY(-6px);
 }
 
 /* =========================
@@ -223,6 +243,12 @@ body::before {
     margin-top: 15px;
 }
 
+.form-note {
+    font-size: 12px;
+    color: #888;
+    margin-bottom: 10px;
+}
+
 /* =========================
    TESTIMONIALS
 ========================= */
@@ -242,6 +268,12 @@ body::before {
 .cta {
     text-align: center;
     padding: 60px 20px;
+    background: linear-gradient(
+        135deg,
+        rgba(13,110,253,0.2),
+        rgba(245,196,0,0.1)
+    );
+    border-radius: 12px;
 }
 
 /* =========================
@@ -288,6 +320,8 @@ footer {
         flex-direction: column;
         display: none;
         text-align: center;
+        background: #000;
+        padding: 20px 0;
     }
 
     .nav-links.active {
