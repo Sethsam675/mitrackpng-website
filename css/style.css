@@ -129,12 +129,9 @@ body::before {
    SECTION
 ========================= */
 .section {
-    max-width: 1100px;
+    width: 90%;
+    max-width: 1200px;
     margin: 30px auto;
-    padding: 60px 20px;
-    background: rgba(255,255,255,0.03);
-    border-radius: 12px;
-    backdrop-filter: blur(8px);
 }
 
 .section-title {
