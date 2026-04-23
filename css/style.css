@@ -26,7 +26,6 @@ body {
     line-height: 1.6;
 }
 
-/* Glow overlay */
 body::before {
     content: "";
     position: fixed;
@@ -128,12 +127,13 @@ body::before {
 }
 
 /* =========================
-   SECTION (FIXED)
+   SECTION (UPGRADED)
 ========================= */
 .section {
     width: 100%;
-    padding: 80px 20px;
-    background: rgba(255,255,255,0.03);
+    padding: 100px 20px;
+    background: linear-gradient(90deg, #081018, #0d1b2a);
+    border-bottom: 1px solid rgba(255,255,255,0.05);
 }
 
 /* INNER CONTAINER */
@@ -142,23 +142,19 @@ body::before {
     margin: 0 auto;
 }
 
-/* SPACING */
-.section + .section {
-    margin-top: 40px;
-}
-
 /* =========================
-   SECTION TITLE
+   SECTION TITLE (UPGRADED)
 ========================= */
 .section-title {
     text-align: center;
-    margin-bottom: 50px;
+    margin-bottom: 60px;
 }
 
 .section-title h2 {
     color: var(--primary-gold);
-    font-size: 28px;
-    margin-bottom: 10px;
+    font-size: 32px;
+    font-weight: 700;
+    letter-spacing: 0.5px;
 }
 
 .section-title p {
@@ -180,17 +176,36 @@ body::before {
 }
 
 /* =========================
-   CARD
+   CARD (UPGRADED)
 ========================= */
 .card {
     padding: 25px;
-    border-radius: 12px;
-    background: rgba(255,255,255,0.05);
-    transition: 0.3s;
+    border-radius: 14px;
+
+    background: linear-gradient(
+        135deg,
+        rgba(255,255,255,0.05),
+        rgba(255,255,255,0.02)
+    );
+
+    border: 1px solid rgba(255,255,255,0.08);
+
+    transition: all 0.3s ease;
 }
 
 .card:hover {
     transform: translateY(-6px);
+    border-color: var(--primary-gold);
+    box-shadow: 0 10px 30px rgba(0,0,0,0.4);
+}
+
+.card p {
+    color: #cfcfcf;
+}
+
+.card a {
+    color: var(--light-blue);
+    font-size: 13px;
 }
 
 /* =========================
@@ -254,8 +269,13 @@ body::before {
 ========================= */
 .testimonial-card {
     padding: 25px;
-    border-radius: 12px;
-    background: rgba(255,255,255,0.05);
+    border-radius: 14px;
+    background: linear-gradient(
+        135deg,
+        rgba(255,255,255,0.05),
+        rgba(255,255,255,0.02)
+    );
+    border: 1px solid rgba(255,255,255,0.08);
 }
 
 .stars {
@@ -267,7 +287,7 @@ body::before {
 ========================= */
 .cta {
     text-align: center;
-    padding: 60px 20px;
+    padding: 80px 20px;
     background: linear-gradient(
         135deg,
         rgba(13,110,253,0.2),
@@ -304,7 +324,6 @@ body::before {
     color: #aaa;
 }
 
-/* 🔥 FIXED POINTS */
 .map-point {
     position: absolute;
     width: 14px;
@@ -312,43 +331,25 @@ body::before {
     background: var(--primary-gold);
     border-radius: 50%;
     z-index: 2;
-
-    /* glow effect */
     box-shadow: 0 0 10px var(--primary-gold), 0 0 20px var(--primary-gold);
-
     animation: pulse 2s infinite;
 }
 
-/* 🔥 CRITICAL — POSITIONING */
-.point1 {
-    top: 30%;
-    left: 40%;
-}
+.point1 { top: 30%; left: 40%; }
+.point2 { top: 55%; left: 65%; }
+.point3 { top: 70%; left: 35%; }
 
-.point2 {
-    top: 55%;
-    left: 65%;
-}
-
-.point3 {
-    top: 70%;
-    left: 35%;
-}
-
-/* pulse animation */
 @keyframes pulse {
     0% { transform: scale(1); opacity: 1; }
     50% { transform: scale(1.6); opacity: 0.6; }
     100% { transform: scale(1); opacity: 1; }
 }
 
-/* optional lines */
 .map-line {
     position: absolute;
     height: 2px;
     background: var(--pcs-blue);
     opacity: 0.5;
-    z-index: 1;
 }
 
 /* =========================
