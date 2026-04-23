@@ -1,29 +1,53 @@
-(function () {
-  document.body.classList.add('page-ready');
+    var endpoint = contactForm.getAttribute('action');
+    var secondaryEndpoint = contactForm.dataset.secondaryAction || '';
+    if (!endpoint) {
+      setStatus('Form endpoint is not configured. Please try again later.', 'error');
+      return;
+    }
+    function submitForm(targetEndpoint, payload) {
+      return fetch(targetEndpoint, {
+        method: 'POST',
+        headers: {
+          Accept: 'application/json'
+        },
+        body: payload
+      }).then(function (response) {
+        if (!response.ok) {
+          throw new Error('Request failed');
+        }
+        return response.json().catch(function () {
+          return {};
+        });
+      });
+    }
 
-  var nav = document.querySelector('nav');
-  var navBtn = document.getElementById('nav-toggle');
-  var navRevealTimer;
-  var navHideTimer;
-  var navReminderTimer;
-  var navReminderVisibleTimer;
+    var primaryPayload = new FormData(contactForm);
+    var secondaryFailed = false;
 
-  function isNavLockedOpen() {
-    return !!(nav && (nav.matches(':hover, :focus-within') || nav.classList.contains('open')));
-  }
+    submitForm(endpoint, primaryPayload)
+      .then(function () {
+        if (!secondaryEndpoint || secondaryEndpoint === endpoint) {
+          return null;
+        }
 
-  function clearNavTimers() {
-    clearTimeout(navRevealTimer);
-    clearTimeout(navHideTimer);
-    clearTimeout(navReminderTimer);
-    clearTimeout(navReminderVisibleTimer);
-  }
+        var secondaryPayload = new FormData(contactForm);
+        secondaryPayload.delete('_cc');
 
-  function showNav(withReminderMotion) {
-    if (!nav) return;
-    nav.classList.remove('nav-hidden');
-    nav.classList.add('nav-visible');
-    if (withReminderMotion) {
+        return submitForm(secondaryEndpoint, secondaryPayload).catch(function () {
+          secondaryFailed = true;
+          return null;
+        });
+      })
+      .then(function () {
+        contactForm.reset();
+        if (secondaryFailed) {
+          setStatus('Message sent to primary inbox. Secondary primary recipient delivery failed this time.', 'error');
+        } else {
+          setStatus('Thanks! Your message was sent successfully. We will contact you soon.', 'success');
+        }
+      })
+      .catch(function () {
+        setStatus('Network issue detected. Retrying with standard submit...', 'pending');
       nav.classList.remove('nav-reminder');
       void nav.offsetWidth;
       nav.classList.add('nav-reminder');
