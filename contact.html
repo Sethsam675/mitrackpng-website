@@ -41,12 +41,13 @@
   <div class="card contact-form-card">
     <form id="contact-form" action="https://formsubmit.co/ajax/dewith@mitrack.com.au" data-secondary-action="https://formsubmit.co/ajax/garme@mitrack.com.au" method="POST" class="contact-form" data-ajax="true">
       <input type="hidden" name="_subject" value="New enquiry from MiTrack PNG website">
-      <input type="hidden" name="_template" value="table">\n      <input type="hidden" name="_cc" value="paulyoungwatchdog@gmail.com,williamkakao1972@gmail.com,samseth889@gmail.com">
+      <input type="hidden" name="_template" value="table">
+      <input type="hidden" name="_cc" value="paulyoungwatchdog@gmail.com,williamkakao1972@gmail.com,samseth889@gmail.com">
       <input type="text" name="_honey" class="form-honeypot" tabindex="-1" autocomplete="off">
       <div class="form-grid">
         <div class="form-group">
           <label for="full-name">Full Name</label>
-          <input id="full-name" type="text" name="name" placeholder="Enter your full name" autocomplete="name" required>
+          <input id="full-name" type="text" name="name" placeholder="Enter your full name" autocomplete="name" minlength="2" required>
         </div>
         <div class="form-group">
           <label for="email-address">Email Address</label>
@@ -54,7 +55,7 @@
         </div>
         <div class="form-group">
           <label for="phone-number">Phone Number</label>
-          <input id="phone-number" type="tel" name="phone" placeholder="+675 ..." autocomplete="tel" required>
+          <input id="phone-number" type="tel" name="phone" placeholder="+675 ..." autocomplete="tel" inputmode="tel" pattern="^[+0-9()\\-\\s]{7,20}$" required>
         </div>
         <div class="form-group">
           <label for="service-select">Service Needed</label>
@@ -70,14 +71,14 @@
         </div>
         <div class="form-group form-group-full">
           <label for="message">Your Message</label>
-          <textarea id="message" name="message" placeholder="Tell us about your security or tracking needs" rows="5" required></textarea>
+          <textarea id="message" name="message" placeholder="Tell us about your security or tracking needs" rows="5" minlength="10" required></textarea>
         </div>
       </div>
       <div class="form-actions">
         <p class="form-note">Our team usually responds within one business day.</p>
         <button type="submit" class="btn btn-primary">Send Message</button>
       </div>
-      <p id="form-status" class="form-status" aria-live="polite"></p>
+      <p id="form-status" class="form-status" aria-live="polite" role="status"></p>
       <noscript><p class="form-note">JavaScript is disabled. The form will still submit via a normal page redirect.</p></noscript>
     </form>
   </div>
