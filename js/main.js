@@ -12,8 +12,19 @@ document.addEventListener("DOMContentLoaded", function () {
   if (toggle && nav) {
     toggle.addEventListener("click", function () {
       nav.classList.toggle("open");
+      toggle.setAttribute("aria-expanded", String(nav.classList.contains("open")));
     });
   }
+
+  const navLinks = document.querySelectorAll('#primary-navigation a');
+  navLinks.forEach((link) => {
+    link.addEventListener("click", function () {
+      if (nav && nav.classList.contains("open")) {
+        nav.classList.remove("open");
+        if (toggle) toggle.setAttribute("aria-expanded", "false");
+      }
+    });
+  });
 
   // ==========================
   // SCROLL EFFECT (NAVBAR)
