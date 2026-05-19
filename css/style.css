@@ -44,38 +44,72 @@ body::before {
 /* =========================
    NAVBAR
 ========================= */
-.nav-center {
-    width: 100%;
-    padding: 15px 30px;
-    background: #000;
-}
-
-.nav-top {
+nav {
+    position: sticky;
+    top: 0;
+    z-index: 999;
     display: flex;
     justify-content: space-between;
     align-items: center;
+    gap: 20px;
+    padding: 12px 30px;
+    background: rgba(2, 6, 23, 0.9);
+    border-bottom: 1px solid rgba(255,255,255,0.08);
+    backdrop-filter: blur(10px);
+}
+
+nav.scrolled {
+    box-shadow: 0 10px 24px rgba(0,0,0,0.35);
+}
+
+.nav-left {
+    display: flex;
+    align-items: center;
+    gap: 12px;
 }
 
 .logo {
-    height: 80px;
+    height: 58px;
 }
 
-.nav-links {
+.logo-link {
+    display: inline-flex;
+    align-items: center;
+}
+
+nav ul {
     display: flex;
-    gap: 40px;
+    align-items: center;
+    gap: 22px;
     list-style: none;
-    justify-content: center;
 }
 
-.nav-links a {
+nav a {
     color: #ccc;
     text-decoration: none;
-    font-size: 14px;
+    font-size: 0.95rem;
 }
 
-.nav-links a:hover,
-.nav-links a.active {
+nav ul a {
+    padding: 8px 0;
+    border-bottom: 2px solid transparent;
+    transition: color 0.25s ease, border-color 0.25s ease;
+}
+
+nav ul a:hover,
+nav ul a.active {
     color: var(--primary-gold);
+    border-color: var(--primary-gold);
+}
+
+#nav-toggle {
+    display: none;
+    border: 1px solid rgba(255,255,255,0.2);
+    background: transparent;
+    color: #fff;
+    border-radius: 8px;
+    padding: 6px 10px;
+    cursor: pointer;
 }
 
 /* =========================
@@ -98,6 +132,14 @@ body::before {
 .hero p {
     color: #aaa;
     margin-top: 15px;
+}
+
+.hero-buttons {
+    margin-top: 24px;
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 12px;
 }
 
 /* =========================
@@ -139,6 +181,13 @@ body::before {
 .btn-outline {
     border: 1px solid var(--primary-gold);
     color: var(--primary-gold);
+}
+
+.btn-small {
+    display: inline-block;
+    margin-top: 12px;
+    padding: 8px 12px;
+    font-size: 13px;
 }
 
 /* =========================
@@ -265,6 +314,12 @@ body::before {
     border-radius: 12px;
 }
 
+.map-container img {
+    width: 100%;
+    border-radius: 8px;
+    display: block;
+}
+
 .map-point {
     position: absolute;
     width: 14px;
@@ -278,6 +333,23 @@ body::before {
 .point1 { top: 30%; left: 40%; }
 .point2 { top: 55%; left: 65%; }
 .point3 { top: 70%; left: 35%; }
+
+.map-info {
+    margin-top: 18px;
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    flex-wrap: wrap;
+}
+
+.map-info span {
+    background: rgba(255,255,255,0.07);
+    border: 1px solid rgba(255,255,255,0.14);
+    color: #ddd;
+    border-radius: 999px;
+    padding: 6px 12px;
+    font-size: 0.82rem;
+}
 
 /* =========================
    CTA
@@ -295,6 +367,94 @@ footer {
     text-align: center;
     padding: 30px;
     color: #777;
+}
+
+/* =========================
+   CONTACT + TESTIMONIALS
+========================= */
+.testimonial-card,
+.contact-grid .card {
+    background: rgba(255,255,255,0.04);
+    border: 1px solid rgba(255,255,255,0.1);
+    border-radius: 14px;
+    padding: 22px;
+}
+
+.testimonial-card .stars {
+    color: var(--primary-gold);
+    letter-spacing: 2px;
+}
+
+.testimonial-card p {
+    margin: 10px 0;
+    color: #d7d7d7;
+}
+
+input,
+textarea,
+select {
+    width: 100%;
+    background: rgba(255,255,255,0.04);
+    border: 1px solid rgba(255,255,255,0.16);
+    border-radius: 8px;
+    color: #fff;
+    padding: 10px 12px;
+    margin-top: 6px;
+}
+
+input:focus,
+textarea:focus,
+select:focus {
+    outline: none;
+    border-color: var(--primary-gold);
+}
+
+.form-status {
+    margin-top: 10px;
+    font-size: 0.9rem;
+}
+
+.form-status-success { color: #8cf78c; }
+.form-status-error { color: #ff9d9d; }
+.form-status-pending { color: #ffdc6a; }
+
+/* =========================
+   RESPONSIVE
+========================= */
+@media (max-width: 768px) {
+    nav {
+        flex-direction: column;
+        align-items: stretch;
+        gap: 8px;
+        padding: 10px 14px;
+    }
+
+    .nav-left {
+        justify-content: space-between;
+    }
+
+    #nav-toggle {
+        display: inline-flex;
+    }
+
+    nav ul {
+        display: none;
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 2px;
+        background: rgba(0,0,0,0.25);
+        border: 1px solid rgba(255,255,255,0.1);
+        border-radius: 10px;
+        padding: 8px 12px;
+    }
+
+    nav.open ul {
+        display: flex;
+    }
+
+    .hero h1 {
+        font-size: 2rem;
+    }
 }
 
 /* =========================
