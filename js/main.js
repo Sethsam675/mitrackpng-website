@@ -74,6 +74,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
   const submitBtn = contactForm.querySelector('button[type="submit"]');
   const statusEl = document.getElementById("form-status");
+  const requiredFields = contactForm.querySelectorAll("input[required], select[required], textarea[required]");
 
   function setStatus(message, type) {
     if (!statusEl) return;
@@ -94,6 +95,19 @@ document.addEventListener("DOMContentLoaded", function () {
 
   contactForm.addEventListener("submit", function (event) {
     event.preventDefault();
+
+    let invalidField = null;
+    requiredFields.forEach((field) => {
+      const valid = field.checkValidity();
+      field.setAttribute("aria-invalid", valid ? "false" : "true");
+      if (!valid && !invalidField) invalidField = field;
+    });
+
+    if (invalidField) {
+      setStatus("Please complete all required fields correctly before submitting.", "error");
+      invalidField.focus();
+      return;
+    }
 
     const endpoint = contactForm.getAttribute("action");
     const secondaryEndpoint = contactForm.dataset.secondaryAction || "";
@@ -128,6 +142,7 @@ document.addEventListener("DOMContentLoaded", function () {
       })
       .then(() => {
         contactForm.reset();
+        requiredFields.forEach((field) => field.setAttribute("aria-invalid", "false"));
         if (secondaryFailed) {
           setStatus("Message sent to primary inbox. Secondary primary recipient delivery failed this time.", "error");
         } else {
