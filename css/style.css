@@ -418,58 +418,6 @@ select:focus {
 .form-status-error { color: #ff9d9d; }
 .form-status-pending { color: #ffdc6a; }
 
-.contact-form-card {
-    max-width: 980px;
-    margin: 0 auto;
-    padding: 28px;
-}
-
-.contact-form {
-    width: 100%;
-}
-
-.form-honeypot {
-    position: absolute;
-    left: -9999px;
-    opacity: 0;
-    pointer-events: none;
-}
-
-.form-grid {
-    display: grid;
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-    gap: 16px;
-}
-
-.form-group {
-    display: flex;
-    flex-direction: column;
-}
-
-.form-group label {
-    font-weight: 600;
-    margin-bottom: 4px;
-    color: #f1f1f1;
-}
-
-.form-group-full {
-    grid-column: 1 / -1;
-}
-
-.form-actions {
-    margin-top: 16px;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    gap: 12px;
-    flex-wrap: wrap;
-}
-
-.form-note {
-    color: #b9b9b9;
-    font-size: 0.9rem;
-}
-
 /* =========================
    RESPONSIVE
 ========================= */
@@ -506,25 +454,6 @@ select:focus {
 
     .hero h1 {
         font-size: 2rem;
-    }
-
-    .contact-form-card {
-        padding: 18px;
-    }
-
-    .form-grid {
-        grid-template-columns: 1fr;
-        gap: 12px;
-    }
-
-    .form-actions {
-        flex-direction: column;
-        align-items: stretch;
-    }
-
-    .form-actions .btn {
-        width: 100%;
-        text-align: center;
     }
 }
 
