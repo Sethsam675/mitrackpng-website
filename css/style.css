@@ -167,6 +167,17 @@ nav {
     margin-top: 15px;
 }
 
+.hero > * + * {
+    margin-top: 18px;
+}
+
+.hero-buttons {
+    display: flex;
+    gap: 14px;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
 /* =========================
    BUTTONS (UPGRADED)
 ========================= */
@@ -231,6 +242,23 @@ nav {
 .container {
     max-width: 1200px;
     margin: 0 auto;
+}
+
+.section > * {
+    position: relative;
+    z-index: 1;
+}
+
+.section .section-title,
+.section .grid,
+.section .card,
+.section .about-grid,
+.section .map-container,
+.section .map-info,
+.section .contact-form-card {
+    max-width: 1200px;
+    margin-left: auto;
+    margin-right: auto;
 }
 
 /* =========================
@@ -312,6 +340,12 @@ nav {
     color: #d6d6d6;
 }
 
+.card h4,
+.card h3,
+.card h2 {
+    margin-bottom: 10px;
+}
+
 .card a {
     color: var(--light-blue);
     font-size: 13px;
@@ -355,6 +389,58 @@ nav {
 .map-container img {
     width: 100%;
     border-radius: 8px;
+}
+
+.map-info {
+    margin-top: 16px;
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    flex-wrap: wrap;
+}
+
+.map-info span {
+    background: rgba(255, 255, 255, 0.08);
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    border-radius: 999px;
+    padding: 6px 12px;
+    font-size: 13px;
+}
+
+.about-grid {
+    display: grid;
+    grid-template-columns: minmax(0, 1.1fr) minmax(0, 1fr);
+    gap: 28px;
+    align-items: start;
+}
+
+.about-visual {
+    display: grid;
+    gap: 16px;
+}
+
+.motto {
+    padding: 20px;
+}
+
+.motto-container {
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.motto-text {
+    text-align: center;
+    font-size: 24px;
+    font-weight: 600;
+    color: var(--primary-gold);
+}
+
+.testimonials .stars {
+    font-size: 22px;
+    letter-spacing: 2px;
+    line-height: 1;
+    color: var(--primary-gold);
+    margin-bottom: 12px;
 }
 
 .map-point {
@@ -581,6 +667,14 @@ footer a {
         width: 100%;
         text-align: center;
     }
+
+    .about-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .testimonials .stars {
+        font-size: 24px;
+    }
 }
 
 @media (min-width: 721px) and (max-width: 1024px) {
@@ -607,8 +701,9 @@ footer a {
 ========================= */
 .fade-in {
     opacity: 0;
-    transform: translateY(30px);
-    transition: all 0.8s ease;
+    transform: translate3d(0, 42px, 0);
+    transition: opacity 0.7s ease, transform 0.7s ease;
+    will-change: opacity, transform;
 }
 
 .fade-in.show {
