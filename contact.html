@@ -18,18 +18,7 @@
 </head>
 <body>
 
-<nav>
-  <div class="nav-left">
-    <a href="index.html" class="logo-link" aria-label="MiTrack PNG home"><img src="assets/images/logo.png" alt="MiTrack Logo" class="logo"></a>
-    <button id="nav-toggle" aria-label="Toggle menu" aria-controls="primary-navigation" aria-expanded="false">☰</button>
-  </div>
-  <ul id="primary-navigation">
-    <li><a href="index.html">Home</a></li>
-    <li><a href="about.html">About</a></li>
-    <li><a href="products.html">Products</a></li>
-    <li><a href="contact.html">Contact</a></li>
-  </ul>
-</nav>
+<nav class="navbar navbar-expand-lg navbar-dark fixed-top"><div class="container"><a class="navbar-brand" href="index.html"><img src="assets/images/logo.png" alt="MiTrack Logo" height="48"></a><button class="navbar-toggler" data-bs-toggle="collapse" data-bs-target="#nav"><span class="navbar-toggler-icon"></span></button><div class="collapse navbar-collapse" id="nav"><ul class="navbar-nav ms-auto"><li class="nav-item"><a class="nav-link active" href="index.html">Home</a></li><li class="nav-item"><a class="nav-link" href="about.html">About</a></li><li class="nav-item"><a class="nav-link" href="products.html">Products</a></li><li class="nav-item"><a class="nav-link" href="contact.html">Contact</a></li></ul></div></div></nav>
 
 <section class="hero">
   <h1>Contact MiTrack PNG</h1>
@@ -41,12 +30,13 @@
   <div class="card contact-form-card">
     <form id="contact-form" action="https://formsubmit.co/ajax/dewith@mitrack.com.au" data-secondary-action="https://formsubmit.co/ajax/garme@mitrack.com.au" method="POST" class="contact-form" data-ajax="true">
       <input type="hidden" name="_subject" value="New enquiry from MiTrack PNG website">
-      <input type="hidden" name="_template" value="table">\n      <input type="hidden" name="_cc" value="paulyoungwatchdog@gmail.com,williamkakao1972@gmail.com,samseth889@gmail.com">
+      <input type="hidden" name="_template" value="table">
+      <input type="hidden" name="_cc" value="paulyoungwatchdog@gmail.com,williamkakao1972@gmail.com,samseth889@gmail.com">
       <input type="text" name="_honey" class="form-honeypot" tabindex="-1" autocomplete="off">
       <div class="form-grid">
         <div class="form-group">
           <label for="full-name">Full Name</label>
-          <input id="full-name" type="text" name="name" placeholder="Enter your full name" autocomplete="name" required>
+          <input id="full-name" type="text" name="name" placeholder="Enter your full name" autocomplete="name" minlength="2" required>
         </div>
         <div class="form-group">
           <label for="email-address">Email Address</label>
@@ -54,7 +44,7 @@
         </div>
         <div class="form-group">
           <label for="phone-number">Phone Number</label>
-          <input id="phone-number" type="tel" name="phone" placeholder="+675 ..." autocomplete="tel" required>
+          <input id="phone-number" type="tel" name="phone" placeholder="+675 ..." autocomplete="tel" inputmode="tel" pattern="^[+0-9()\\-\\s]{7,20}$" required>
         </div>
         <div class="form-group">
           <label for="service-select">Service Needed</label>
@@ -70,14 +60,14 @@
         </div>
         <div class="form-group form-group-full">
           <label for="message">Your Message</label>
-          <textarea id="message" name="message" placeholder="Tell us about your security or tracking needs" rows="5" required></textarea>
+          <textarea id="message" name="message" placeholder="Tell us about your security or tracking needs" rows="5" minlength="10" required></textarea>
         </div>
       </div>
       <div class="form-actions">
         <p class="form-note">Our team usually responds within one business day.</p>
         <button type="submit" class="btn btn-primary">Send Message</button>
       </div>
-      <p id="form-status" class="form-status" aria-live="polite"></p>
+      <p id="form-status" class="form-status" aria-live="polite" role="status"></p>
       <noscript><p class="form-note">JavaScript is disabled. The form will still submit via a normal page redirect.</p></noscript>
     </form>
   </div>
@@ -140,10 +130,7 @@
   <a href="contact.html" class="btn btn-primary">Request Consultation</a>
 </section>
 
-<footer>
-  <p>© 2026 MiTrack PNG | Powered by Pacific Corporate Security</p>
-  <p>Hotline: <a href="tel:+67575436507">+675 7543 6507</a> / <a href="tel:+67579395907">+675 7939 5907</a> | Email: <a href="mailto:mitrack@mitrack.com.au">mitrack@mitrack.com.au</a></p>
-</footer>
+<footer class="pt-5 pb-4"><div class="container"><div class="row g-4"><div class="col-lg-4"><h5>MiTrack PNG</h5><p>Tracking, CCTV, and security response services for enterprise operations across PNG.</p></div><div class="col-6 col-lg-2"><h6>Navigation</h6><a class="d-block footer-link" href="index.html">Home</a><a class="d-block footer-link" href="about.html">About</a><a class="d-block footer-link" href="products.html">Products</a><a class="d-block footer-link" href="contact.html">Contact</a></div><div class="col-6 col-lg-3"><h6>Services</h6><span class="d-block">GPS Tracking</span><span class="d-block">CCTV Monitoring</span><span class="d-block">24/7 Security Support</span></div><div class="col-lg-3"><h6>Contact</h6><p>Hotline: <a class="footer-link" href="tel:+67575436507">+675 7543 6507</a><br>Email: <a class="footer-link" href="mailto:mitrack@mitrack.com.au">mitrack@mitrack.com.au</a></p></div></div><hr><p class="mb-0">© 2026 MiTrack PNG | Powered by Pacific Corporate Security</p></div></footer>
 
 <script src="js/main.js?v=20260322"></script>
 </body>
