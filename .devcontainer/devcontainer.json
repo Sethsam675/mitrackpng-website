@@ -1,0 +1,33 @@
+{
+  "name": "MiTrack PNG Website",
+  "image": "mcr.microsoft.com/devcontainers/base:ubuntu-24.04",
+  "features": {
+    "ghcr.io/devcontainers/features/python:1": {
+      "version": "3.12"
+    },
+    "ghcr.io/devcontainers/features/node:1": {
+      "version": "22"
+    }
+  },
+  "customizations": {
+    "vscode": {
+      "settings": {
+        "files.trimTrailingWhitespace": true,
+        "editor.formatOnSave": true
+      },
+      "extensions": [
+        "esbenp.prettier-vscode",
+        "ms-python.python",
+        "ritwickdey.LiveServer"
+      ]
+    }
+  },
+  "postCreateCommand": "python --version && node --version",
+  "forwardPorts": [8000],
+  "portsAttributes": {
+    "8000": {
+      "label": "Local Preview",
+      "onAutoForward": "openBrowser"
+    }
+  }
+}
