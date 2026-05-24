@@ -280,6 +280,7 @@ nav {
     inset: 0;
     border-radius: 16px;
     background: radial-gradient(circle at top left, rgba(255,255,255,0.08), transparent 60%);
+    pointer-events: none;
 }
 
 .card::after {
@@ -405,6 +406,43 @@ footer a {
     color: var(--light-blue);
 }
 
+
+.contact-actions {
+    margin-top: 14px;
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+}
+
+.icon-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    border-radius: 999px;
+    padding: 8px 12px;
+    font-size: 13px;
+    font-weight: 600;
+    text-decoration: none;
+    border: 1px solid transparent;
+}
+
+.icon-btn-whatsapp {
+    background: rgba(37, 211, 102, 0.2);
+    border-color: rgba(37, 211, 102, 0.45);
+    color: #9ff7c3;
+}
+
+.icon-btn-email {
+    background: rgba(77, 166, 255, 0.16);
+    border-color: rgba(77, 166, 255, 0.45);
+    color: #b8ddff;
+}
+
+.icon-btn:hover,
+.icon-btn:focus-visible {
+    transform: translateY(-1px);
+    filter: brightness(1.08);
+}
 .contact-form-card {
     max-width: 900px;
     margin: 0 auto;
