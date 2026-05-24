@@ -135,6 +135,9 @@ nav {
     color: #d8d8d8;
     text-decoration: none;
     font-weight: 500;
+    display: inline-flex;
+    align-items: center;
+    min-height: 44px;
 }
 
 #primary-navigation a:hover,
@@ -522,14 +525,24 @@ footer a {
 }
 
 @media (max-width: 720px) {
+    .logo {
+        height: 64px;
+    }
+
+    .nav-left {
+        width: 100%;
+    }
+
     #nav-toggle {
         display: inline-flex;
         align-items: center;
         justify-content: center;
+        margin-left: auto;
     }
 
     nav {
         flex-wrap: wrap;
+        padding: 8px 14px;
     }
 
     #primary-navigation {
@@ -540,10 +553,24 @@ footer a {
         padding: 12px 0 16px;
         width: 100%;
         margin-left: 0;
+        border-top: 1px solid rgba(255, 255, 255, 0.1);
+        max-height: calc(100dvh - 92px);
+        overflow-y: auto;
     }
 
     nav.open #primary-navigation {
         display: flex;
+    }
+
+    #primary-navigation li {
+        width: 100%;
+    }
+
+    #primary-navigation a {
+        width: 100%;
+        justify-content: center;
+        padding: 8px 12px;
+        border-radius: 8px;
     }
 
     .form-grid {
@@ -553,6 +580,25 @@ footer a {
     .form-actions .btn {
         width: 100%;
         text-align: center;
+    }
+}
+
+@media (min-width: 721px) and (max-width: 1024px) {
+    nav {
+        padding: 10px 16px;
+        gap: 12px;
+    }
+
+    .logo {
+        height: 72px;
+    }
+
+    #primary-navigation {
+        gap: 16px;
+    }
+
+    #primary-navigation a {
+        font-size: 15px;
     }
 }
 
