@@ -1,7 +1,6 @@
-// ==========================
-// DOM READY
-// ==========================
 document.addEventListener("DOMContentLoaded", function () {
+  const nav = document.querySelector(".navbar");
+  const collapse = document.getElementById("nav");
 
   // ==========================
   // NAV TOGGLE (MOBILE)
@@ -15,6 +14,8 @@ document.addEventListener("DOMContentLoaded", function () {
       toggle.setAttribute("aria-expanded", String(nav.classList.contains("open")));
     });
   }
+  onScroll();
+  window.addEventListener("scroll", onScroll);
 
   const navLinks = document.querySelectorAll('#primary-navigation a');
   navLinks.forEach((link) => {
@@ -37,38 +38,15 @@ document.addEventListener("DOMContentLoaded", function () {
         nav.classList.remove("scrolled");
       }
     });
-  }
+  });
 
-  // ==========================
-  // FADE-IN ANIMATION (FIXED)
-  // ==========================
-  const faders = document.querySelectorAll(".fade-in");
-
-  if (faders.length > 0) {
-    const observer = new IntersectionObserver((entries, observer) => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          entry.target.classList.add("show");
-          observer.unobserve(entry.target); // stop observing once visible
-        }
-      });
-    }, { threshold: 0.15 });
-
-    faders.forEach(el => {
-      const rect = el.getBoundingClientRect();
-
-      // Show elements already in view on load
-      if (rect.top < window.innerHeight) {
-        el.classList.add("show");
-      } else {
-        observer.observe(el);
-      }
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach((entry) => {
+      if (entry.isIntersecting) entry.target.classList.add("show");
     });
-  }
+  }, { threshold: 0.15 });
+  document.querySelectorAll(".reveal,.fade-in").forEach((el) => observer.observe(el));
 
-  // ==========================
-  // CONTACT FORM (DUAL PRIMARY + FALLBACK)
-  // ==========================
   const contactForm = document.getElementById("contact-form");
   if (!contactForm || contactForm.dataset.ajax !== "true") return;
 
@@ -83,18 +61,19 @@ document.addEventListener("DOMContentLoaded", function () {
   }
 
   function submitForm(targetEndpoint, payload) {
-    return fetch(targetEndpoint, {
-      method: "POST",
-      headers: { Accept: "application/json" },
-      body: payload
-    }).then((response) => {
-      if (!response.ok) throw new Error("Request failed");
-      return response.json().catch(() => ({}));
-    });
+    return fetch(targetEndpoint, { method: "POST", headers: { Accept: "application/json" }, body: payload })
+      .then((response) => { if (!response.ok) throw new Error("Request failed"); return response.json().catch(() => ({})); });
   }
 
   contactForm.addEventListener("submit", function (event) {
     event.preventDefault();
+    let invalidField = null;
+    requiredFields.forEach((field) => {
+      const valid = field.checkValidity();
+      field.setAttribute("aria-invalid", valid ? "false" : "true");
+      if (!valid && !invalidField) invalidField = field;
+    });
+    if (invalidField) { setStatus("Please complete all required fields correctly before submitting.", "error"); invalidField.focus(); return; }
 
     let invalidField = null;
     requiredFields.forEach((field) => {
@@ -111,34 +90,19 @@ document.addEventListener("DOMContentLoaded", function () {
 
     const endpoint = contactForm.getAttribute("action");
     const secondaryEndpoint = contactForm.dataset.secondaryAction || "";
+    if (!endpoint) { setStatus("Form endpoint is not configured. Please try again later.", "error"); return; }
 
-    if (!endpoint) {
-      setStatus("Form endpoint is not configured. Please try again later.", "error");
-      return;
-    }
-
-    if (submitBtn) {
-      submitBtn.disabled = true;
-      submitBtn.textContent = "Sending...";
-    }
-
+    if (submitBtn) { submitBtn.disabled = true; submitBtn.textContent = "Sending..."; }
     setStatus("Sending your message...", "pending");
 
     const primaryPayload = new FormData(contactForm);
     let secondaryFailed = false;
-
     submitForm(endpoint, primaryPayload)
       .then(() => {
         if (!secondaryEndpoint || secondaryEndpoint === endpoint) return null;
-
-        // Avoid duplicate CC sends on secondary
         const secondaryPayload = new FormData(contactForm);
         secondaryPayload.delete("_cc");
-
-        return submitForm(secondaryEndpoint, secondaryPayload).catch(() => {
-          secondaryFailed = true;
-          return null;
-        });
+        return submitForm(secondaryEndpoint, secondaryPayload).catch(() => { secondaryFailed = true; return null; });
       })
       .then(() => {
         contactForm.reset();
@@ -150,16 +114,12 @@ document.addEventListener("DOMContentLoaded", function () {
         }
       })
       .catch(() => {
-        // Fallback to standard form submission
         setStatus("Network issue detected. Retrying with standard submit...", "pending");
         contactForm.dataset.ajax = "false";
         contactForm.submit();
       })
       .finally(() => {
-        if (submitBtn) {
-          submitBtn.disabled = false;
-          submitBtn.textContent = "Send Message";
-        }
+        if (submitBtn) { submitBtn.disabled = false; submitBtn.textContent = "Send Message"; }
       });
   });
 
