@@ -54,6 +54,11 @@ document.addEventListener("DOMContentLoaded", function () {
   // ==========================
   // FADE-IN ANIMATION (FIXED)
   // ==========================
+  const autoRevealTargets = document.querySelectorAll(
+    "section .section-title, section .grid, section .card, section .map-container, section .map-info, .cta"
+  );
+  autoRevealTargets.forEach((element) => element.classList.add("fade-in"));
+
   const faders = document.querySelectorAll(".fade-in");
 
   if (faders.length > 0) {
