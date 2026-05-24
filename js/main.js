@@ -2,18 +2,40 @@ document.addEventListener("DOMContentLoaded", function () {
   const nav = document.querySelector(".navbar");
   const collapse = document.getElementById("nav");
 
-  function onScroll() {
-    if (!nav) return;
-    if (window.scrollY > 20) nav.classList.add("glass");
-    else nav.classList.remove("glass");
+  // ==========================
+  // NAV TOGGLE (MOBILE)
+  // ==========================
+  const toggle = document.getElementById("nav-toggle");
+  const nav = document.querySelector("nav");
+
+  if (toggle && nav) {
+    toggle.addEventListener("click", function () {
+      nav.classList.toggle("open");
+      toggle.setAttribute("aria-expanded", String(nav.classList.contains("open")));
+    });
   }
   onScroll();
   window.addEventListener("scroll", onScroll);
 
-  document.querySelectorAll("#nav .nav-link").forEach((link) => {
-    link.addEventListener("click", () => {
-      if (collapse && collapse.classList.contains("show") && window.bootstrap) {
-        new bootstrap.Collapse(collapse).hide();
+  const navLinks = document.querySelectorAll('#primary-navigation a');
+  navLinks.forEach((link) => {
+    link.addEventListener("click", function () {
+      if (nav && nav.classList.contains("open")) {
+        nav.classList.remove("open");
+        if (toggle) toggle.setAttribute("aria-expanded", "false");
+      }
+    });
+  });
+
+  // ==========================
+  // SCROLL EFFECT (NAVBAR)
+  // ==========================
+  if (nav) {
+    window.addEventListener("scroll", function () {
+      if (window.scrollY > 50) {
+        nav.classList.add("scrolled");
+      } else {
+        nav.classList.remove("scrolled");
       }
     });
   });
@@ -53,6 +75,19 @@ document.addEventListener("DOMContentLoaded", function () {
     });
     if (invalidField) { setStatus("Please complete all required fields correctly before submitting.", "error"); invalidField.focus(); return; }
 
+    let invalidField = null;
+    requiredFields.forEach((field) => {
+      const valid = field.checkValidity();
+      field.setAttribute("aria-invalid", valid ? "false" : "true");
+      if (!valid && !invalidField) invalidField = field;
+    });
+
+    if (invalidField) {
+      setStatus("Please complete all required fields correctly before submitting.", "error");
+      invalidField.focus();
+      return;
+    }
+
     const endpoint = contactForm.getAttribute("action");
     const secondaryEndpoint = contactForm.dataset.secondaryAction || "";
     if (!endpoint) { setStatus("Form endpoint is not configured. Please try again later.", "error"); return; }
@@ -72,7 +107,11 @@ document.addEventListener("DOMContentLoaded", function () {
       .then(() => {
         contactForm.reset();
         requiredFields.forEach((field) => field.setAttribute("aria-invalid", "false"));
-        setStatus(secondaryFailed ? "Message sent to primary inbox. Secondary primary recipient delivery failed this time." : "Thanks! Your message was sent successfully. We will contact you soon.", secondaryFailed ? "error" : "success");
+        if (secondaryFailed) {
+          setStatus("Message sent to primary inbox. Secondary primary recipient delivery failed this time.", "error");
+        } else {
+          setStatus("Thanks! Your message was sent successfully. We will contact you soon.", "success");
+        }
       })
       .catch(() => {
         setStatus("Network issue detected. Retrying with standard submit...", "pending");
@@ -83,4 +122,5 @@ document.addEventListener("DOMContentLoaded", function () {
         if (submitBtn) { submitBtn.disabled = false; submitBtn.textContent = "Send Message"; }
       });
   });
+
 });
