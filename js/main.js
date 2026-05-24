@@ -10,8 +10,31 @@ document.addEventListener("DOMContentLoaded", function () {
   const nav = document.querySelector("nav");
 
   if (toggle && nav) {
+    const primaryNavigation = document.getElementById("primary-navigation");
+
+    function setMenuState(isOpen) {
+      nav.classList.toggle("open", isOpen);
+      toggle.setAttribute("aria-expanded", isOpen ? "true" : "false");
+    }
+
     toggle.addEventListener("click", function () {
-      nav.classList.toggle("open");
+      setMenuState(!nav.classList.contains("open"));
+    });
+
+    if (primaryNavigation) {
+      primaryNavigation.querySelectorAll("a").forEach((link) => {
+        link.addEventListener("click", function () {
+          if (window.innerWidth <= 720) {
+            setMenuState(false);
+          }
+        });
+      });
+    }
+
+    window.addEventListener("resize", function () {
+      if (window.innerWidth > 720) {
+        setMenuState(false);
+      }
     });
   }
 
