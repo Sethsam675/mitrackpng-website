@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Feedback & Ratings | MiTrack PNG</title>
+<meta name="description" content="Share your feedback and rate MiTrack PNG's GPS tracking, CCTV, and 24/7 monitoring services.">
+<meta property="og:title" content="Feedback & Ratings | MiTrack PNG">
+<meta property="og:description" content="Rate and review MiTrack PNG security and tracking solutions.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://mitrackpng.com/feedback.html">
+<meta property="og:image" content="https://mitrackpng.com/assets/images/logo.png">
+<link rel="canonical" href="https://mitrackpng.com/feedback.html">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/style.css?v=20260322">
+</head>
+<body>
+
+<nav>
+  <div class="nav-left">
+    <a href="index.html" class="logo-link" aria-label="MiTrack PNG home"><img src="assets/images/logo.png" alt="MiTrack Logo" class="logo"></a>
+    <button id="nav-toggle" aria-label="Toggle menu" aria-controls="primary-navigation" aria-expanded="false">☰</button>
+  </div>
+  <ul id="primary-navigation">
+    <li><a href="index.html">Home</a></li>
+    <li><a href="about.html">About</a></li>
+    <li><a href="products.html">Products</a></li>
+    <li><a href="contact.html">Contact</a></li>
+    <li><a href="feedback.html" class="active">Feedback</a></li>
+  </ul>
+</nav>
+
+<section class="hero">
+  <h1>Share Your Feedback</h1>
+  <p>Help us improve by sharing your experience with MiTrack PNG services. Your feedback is valuable to us.</p>
+</section>
+
+<section class="section">
+  <div class="section-title">
+    <h2>Submit Your Feedback</h2>
+    <p>Rate the service and share your comments to help us serve you better.</p>
+  </div>
+  
+  <div class="card feedback-form-card">
+    <form id="feedback-form" action="https://formsubmit.co/ajax/mitrack@mitrack.com.au" method="POST" class="feedback-form">
+      <input type="hidden" name="_subject" value="New Feedback from MiTrack PNG website">
+      <input type="hidden" name="_template" value="table">
+      <input type="hidden" name="_cc" value="garme@mitrack.com.au,paulyoungwatchdog@gmail.com,williamkakao1972@gmail.com">
+      <input type="text" name="_honey" class="form-honeypot" tabindex="-1" autocomplete="off">
+      
+      <div class="form-grid">
+        <div class="form-group">
+          <label for="feedback-name">Full Name</label>
+          <input id="feedback-name" type="text" name="name" placeholder="Enter your full name" autocomplete="name" required>
+        </div>
+        
+        <div class="form-group">
+          <label for="feedback-email">Email Address</label>
+          <input id="feedback-email" type="email" name="email" placeholder="name@company.com" autocomplete="email" required>
+        </div>
+        
+        <div class="form-group">
+          <label for="feedback-phone">Phone Number (Optional)</label>
+          <input id="feedback-phone" type="tel" name="phone" placeholder="+675 ..." autocomplete="tel">
+        </div>
+        
+        <div class="form-group">
+          <label for="feedback-company">Company/Organization (Optional)</label>
+          <input id="feedback-company" type="text" name="company" placeholder="Your company name" autocomplete="organization">
+        </div>
+        
+        <div class="form-group form-group-full">
+          <label for="service-type">Service Used</label>
+          <select id="service-type" name="service_used" required>
+            <option value="" selected disabled>Select a service</option>
+            <option value="gps-tracking">GPS Tracking</option>
+            <option value="cctv-surveillance">CCTV & Surveillance</option>
+            <option value="24-7-monitoring">24/7 Monitoring</option>
+            <option value="fleet-management">Fleet Management</option>
+            <option value="alarm-systems">Alarm Systems</option>
+            <option value="personal-tracking">Personal Tracking Devices</option>
+            <option value="multiple-services">Multiple Services</option>
+          </select>
+        </div>
+        
+        <div class="form-group form-group-full">
+          <label for="rating-input">Rate Your Experience</label>
+          <div class="star-rating-container">
+            <div class="star-rating" id="star-rating">
+              <span class="star" data-value="1" title="1 star">★</span>
+              <span class="star" data-value="2" title="2 stars">★</span>
+              <span class="star" data-value="3" title="3 stars">★</span>
+              <span class="star" data-value="4" title="4 stars">★</span>
+              <span class="star" data-value="5" title="5 stars">★</span>
+            </div>
+            <input type="hidden" id="rating-input" name="rating" value="0" required>
+            <span id="rating-text" class="rating-text">Click to rate</span>
+          </div>
+        </div>
+        
+        <div class="form-group form-group-full">
+          <label for="feedback-comment">Your Feedback & Comments</label>
+          <textarea id="feedback-comment" name="comments" placeholder="Share your experience, suggestions, or any concerns about our services..." rows="6" required></textarea>
+        </div>
+        
+        <div class="form-group form-group-full">
+          <label for="recommend-checkbox">
+            <input type="checkbox" id="recommend-checkbox" name="would_recommend" value="yes">
+            I would recommend MiTrack PNG to others
+          </label>
+        </div>
+      </div>
+      
+      <div class="form-actions">
+        <p class="form-note">Thank you for helping us improve our services.</p>
+        <button type="submit" class="btn btn-primary">Submit Feedback</button>
+      </div>
+      
+      <p id="feedback-status" class="form-status" aria-live="polite"></p>
+      <noscript><p class="form-note">JavaScript is disabled. The form will still submit via a normal page redirect.</p></noscript>
+    </form>
+  </div>
+</section>
+
+<section class="section">
+  <div class="section-title">
+    <h2>Recent Feedback</h2>
+    <p>See what other clients say about MiTrack PNG services.</p>
+  </div>
+  
+  <div id="feedback-list" class="feedback-display-grid">
+    <div class="feedback-card">
+      <div class="feedback-header">
+        <h4>Excellent Service</h4>
+        <div class="feedback-rating">
+          <span class="rating-stars">★★★★★</span>
+          <span class="rating-value">5/5</span>
+        </div>
+      </div>
+      <p class="feedback-text">"MiTrack's GPS tracking system has been incredibly reliable. Our fleet operations have improved significantly with real-time tracking. Highly recommended!"</p>
+      <footer class="feedback-footer">
+        <span class="feedback-author">Enterprise Logistics</span>
+        <span class="feedback-date">Port Moresby, PNG</span>
+      </footer>
+    </div>
+
+    <div class="feedback-card">
+      <div class="feedback-header">
+        <h4>Great CCTV Coverage</h4>
+        <div class="feedback-rating">
+          <span class="rating-stars">★★★★★</span>
+          <span class="rating-value">5/5</span>
+        </div>
+      </div>
+      <p class="feedback-text">"The CCTV installation and monitoring service is top-notch. The remote access and real-time alerts give us complete peace of mind. Professional team, great support."</p>
+      <footer class="feedback-footer">
+        <span class="feedback-author">Security Operations Manager</span>
+        <span class="feedback-date">Corporate Client</span>
+      </footer>
+    </div>
+
+    <div class="feedback-card">
+      <div class="feedback-header">
+        <h4>Reliable 24/7 Support</h4>
+        <div class="feedback-rating">
+          <span class="rating-stars">★★★★☆</span>
+          <span class="rating-value">4/5</span>
+        </div>
+      </div>
+      <p class="feedback-text">"The 24/7 monitoring service is dependable and their response time is impressive. Only minor suggestion would be to add more reporting options, but overall excellent."</p>
+      <footer class="feedback-footer">
+        <span class="feedback-author">Industrial Facility Manager</span>
+        <span class="feedback-date">Operations Team</span>
+      </footer>
+    </div>
+
+    <div class="feedback-card">
+      <div class="feedback-header">
+        <h4>Best Decision for Our Fleet</h4>
+        <div class="feedback-rating">
+          <span class="rating-stars">★★★★★</span>
+          <span class="rating-value">5/5</span>
+        </div>
+      </div>
+      <p class="feedback-text">"We switched to MiTrack PNG and haven't looked back. Their system is user-friendly, reliable, and cost-effective. The support team is always ready to help."</p>
+      <footer class="feedback-footer">
+        <span class="feedback-author">Transport Company Director</span>
+        <span class="feedback-date">National Operations</span>
+      </footer>
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="section-title">
+    <h2>What Our Clients Rate Most</h2>
+  </div>
+  
+  <div class="grid">
+    <div class="stat-card">
+      <div class="stat-number">98%</div>
+      <div class="stat-label">Satisfaction Rate</div>
+      <p>Clients rate MiTrack PNG services highly for reliability and support.</p>
+    </div>
+    <div class="stat-card">
+      <div class="stat-number">24/7</div>
+      <div class="stat-label">Availability</div>
+      <p>Round-the-clock monitoring and rapid response for all emergencies.</p>
+    </div>
+    <div class="stat-card">
+      <div class="stat-number">500+</div>
+      <div class="stat-label">Active Clients</div>
+      <p>Trusted by businesses across Papua New Guinea for their security needs.</p>
+    </div>
+  </div>
+</section>
+
+<section class="cta">
+  <h3>Have Questions or Need Support?</h3>
+  <p>If you need assistance with your services or have additional feedback, reach out to our team.</p>
+  <a href="contact.html" class="btn btn-primary">Contact Our Team</a>
+</section>
+
+<footer>
+  <p>© 2026 MiTrack PNG | Powered by Pacific Corporate Security</p>
+  <p>Hotline: <a href="tel:+67575436507">+675 7543 6507</a> / <a href="tel:+67579395907">+675 7939 5907</a> | Email: <a href="mailto:mitrack@mitrack.com.au">mitrack@mitrack.com.au</a></p>
+</footer>
+
+<script src="js/feedback.js?v=20260322"></script>
+<script src="js/main.js?v=20260322"></script>
+</body>
+</html>
