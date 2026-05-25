@@ -147,6 +147,7 @@ nav {
     border-radius: 8px;
     width: 44px;
     height: 44px;
+    cursor: pointer;
 }
 
 #primary-navigation {
@@ -169,7 +170,8 @@ nav {
 }
 
 #primary-navigation a:hover,
-#primary-navigation a:focus-visible {
+#primary-navigation a:focus-visible,
+#primary-navigation a.active {
     color: var(--primary-gold);
 }
 
@@ -217,6 +219,10 @@ nav {
     transition: 0.3s;
     position: relative;
     overflow: hidden;
+    display: inline-block;
+    border: none;
+    cursor: pointer;
+    font-family: inherit;
 }
 
 .btn::after {
@@ -245,6 +251,7 @@ nav {
 .btn-outline {
     border: 1px solid var(--primary-gold);
     color: var(--primary-gold);
+    background: transparent;
 }
 
 /* =========================
@@ -283,7 +290,9 @@ nav {
 .section .about-grid,
 .section .map-container,
 .section .map-info,
-.section .contact-form-card {
+.section .contact-form-card,
+.section .feedback-form-card,
+.section .feedback-display-grid {
     max-width: 1200px;
     margin-left: auto;
     margin-right: auto;
@@ -323,13 +332,10 @@ nav {
     position: relative;
     padding: 25px;
     border-radius: 16px;
-
     background: linear-gradient(135deg, rgba(255,255,255,0.06), rgba(255,255,255,0.02));
-
     border: 1px solid rgba(255,255,255,0.08);
     backdrop-filter: blur(12px);
     overflow: hidden;
-
     transition: all 0.35s ease;
 }
 
@@ -379,7 +385,170 @@ nav {
     font-size: 13px;
 }
 
+/* =========================
+   FEEDBACK STYLES
+========================= */
+.feedback-form-card {
+    max-width: 900px;
+    margin: 0 auto;
+}
 
+.star-rating-container {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    margin-top: 12px;
+}
+
+.star-rating {
+    display: flex;
+    gap: 8px;
+    font-size: 32px;
+}
+
+.star {
+    cursor: pointer;
+    color: rgba(245, 196, 0, 0.3);
+    transition: all 0.2s ease;
+    user-select: none;
+}
+
+.star:hover,
+.star.active {
+    color: var(--primary-gold);
+    text-shadow: 0 0 8px rgba(245, 196, 0, 0.6);
+    transform: scale(1.15);
+}
+
+.rating-text {
+    color: #aaa;
+    font-size: 13px;
+    min-width: 80px;
+}
+
+.rating-text.rated {
+    color: var(--primary-gold);
+}
+
+/* Feedback Display Grid */
+.feedback-display-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    gap: 24px;
+}
+
+.feedback-card {
+    position: relative;
+    padding: 24px;
+    border-radius: 14px;
+    background: linear-gradient(135deg, rgba(13, 110, 253, 0.08), rgba(245, 196, 0, 0.04));
+    border: 1px solid rgba(245, 196, 0, 0.15);
+    backdrop-filter: blur(10px);
+    transition: all 0.3s ease;
+}
+
+.feedback-card:hover {
+    transform: translateY(-6px);
+    border-color: var(--primary-gold);
+    box-shadow: 0 8px 24px rgba(245, 196, 0, 0.1);
+}
+
+.feedback-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: 16px;
+}
+
+.feedback-header h4 {
+    color: var(--primary-gold);
+    font-size: 18px;
+}
+
+.feedback-rating {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    gap: 4px;
+}
+
+.rating-stars {
+    color: var(--primary-gold);
+    font-size: 18px;
+    letter-spacing: 2px;
+}
+
+.rating-value {
+    color: #aaa;
+    font-size: 12px;
+}
+
+.feedback-text {
+    color: #d6d6d6;
+    margin-bottom: 16px;
+    line-height: 1.6;
+    font-size: 14px;
+}
+
+.feedback-footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-top: 16px;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+    font-size: 13px;
+}
+
+.feedback-author {
+    color: var(--light-blue);
+    font-weight: 600;
+}
+
+.feedback-date {
+    color: #777;
+}
+
+/* Stat Cards */
+.stat-card {
+    position: relative;
+    padding: 30px 25px;
+    border-radius: 16px;
+    background: linear-gradient(135deg, rgba(245, 196, 0, 0.08), rgba(13, 110, 253, 0.08));
+    border: 1px solid rgba(245, 196, 0, 0.2);
+    backdrop-filter: blur(12px);
+    text-align: center;
+    transition: all 0.3s ease;
+}
+
+.stat-card:hover {
+    transform: translateY(-8px);
+    border-color: var(--primary-gold);
+    box-shadow: 0 10px 30px rgba(245, 196, 0, 0.1);
+}
+
+.stat-number {
+    font-size: 48px;
+    font-weight: 700;
+    background: linear-gradient(90deg, var(--primary-gold), var(--pcs-blue));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    margin-bottom: 8px;
+}
+
+.stat-label {
+    color: var(--primary-gold);
+    font-size: 18px;
+    font-weight: 600;
+    margin-bottom: 12px;
+}
+
+.stat-card p {
+    color: #aaa;
+    font-size: 14px;
+    line-height: 1.5;
+}
+
+/* Form Styling */
 .features {
     list-style: none;
     margin: 14px 0 18px;
@@ -485,7 +654,6 @@ nav {
 .point2 { top: 55%; left: 65%; }
 .point3 { top: 70%; left: 35%; }
 
-
 .live-light {
     position: absolute;
     width: 10px;
@@ -523,7 +691,6 @@ footer a {
     color: var(--light-blue);
 }
 
-
 .contact-actions {
     margin-top: 14px;
     display: flex;
@@ -560,6 +727,7 @@ footer a {
     transform: translateY(-1px);
     filter: brightness(1.08);
 }
+
 .contact-form-card {
     max-width: 900px;
     margin: 0 auto;
@@ -578,6 +746,7 @@ footer a {
 .form-group label {
     display: inline-block;
     margin-bottom: 8px;
+    font-weight: 500;
 }
 
 .form-group input,
@@ -590,10 +759,26 @@ footer a {
     border-radius: 10px;
     padding: 12px;
     font-family: inherit;
+    transition: all 0.3s ease;
+}
+
+.form-group input:focus,
+.form-group select:focus,
+.form-group textarea:focus {
+    outline: none;
+    border-color: var(--primary-gold);
+    background: rgba(255,255,255,0.08);
+    box-shadow: 0 0 12px rgba(245, 196, 0, 0.2);
 }
 
 .form-group select option {
     color: #000;
+}
+
+.form-group input[type="checkbox"] {
+    width: auto;
+    margin-right: 8px;
+    cursor: pointer;
 }
 
 .form-actions {
@@ -702,6 +887,24 @@ footer a {
 
     .testimonials .stars {
         font-size: 24px;
+    }
+
+    .star-rating {
+        font-size: 28px;
+        gap: 6px;
+    }
+
+    .feedback-header {
+        flex-direction: column;
+        gap: 12px;
+    }
+
+    .feedback-rating {
+        align-items: flex-start;
+    }
+
+    .stat-number {
+        font-size: 36px;
     }
 }
 
