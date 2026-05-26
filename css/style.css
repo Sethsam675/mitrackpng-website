@@ -564,10 +564,38 @@ nav {
     color: #d6d6d6;
 }
 
+.product-card h4 {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.product-title-icon {
+    width: 28px;
+    height: 28px;
+    border-radius: 8px;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    background: linear-gradient(145deg, rgba(255, 255, 255, 0.12), rgba(255, 255, 255, 0.03));
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.14), 0 4px 10px rgba(0, 0, 0, 0.35);
+    flex: 0 0 28px;
+}
+
+.product-title-icon i {
+    width: 16px;
+    height: 16px;
+    color: #fff;
+    stroke-width: 2.1;
+}
+
 .features li i {
     width: 18px;
     height: 18px;
-    color: var(--primary-gold);
+    color: #fff;
+    opacity: 0.92;
+    stroke-width: 2.2;
     flex: 0 0 18px;
 }
 
