@@ -84,10 +84,19 @@ document.addEventListener("DOMContentLoaded", function () {
   }
 
   // ==========================
+  // LUCIDE ICONS
+  // ==========================
+  if (window.lucide && typeof window.lucide.createIcons === "function") {
+    window.lucide.createIcons();
+  }
+
+  // ==========================
   // CONTACT FORM (DUAL PRIMARY + FALLBACK)
   // ==========================
   const contactForm = document.getElementById("contact-form");
-  if (!contactForm || contactForm.dataset.ajax !== "true") return;
+  if (!contactForm || contactForm.dataset.ajax !== "true") {
+    return;
+  }
 
   const submitBtn = contactForm.querySelector('button[type="submit"]');
   const statusEl = document.getElementById("form-status");
