@@ -583,19 +583,24 @@ nav {
     flex: 0 0 28px;
 }
 
-.product-title-icon i {
-    width: 16px;
-    height: 16px;
+.product-emoji {
+    font-size: 16px;
+    line-height: 1;
     color: #fff;
-    stroke-width: 2.1;
+    font-family: "Montserrat", sans-serif;
 }
 
-.features li i {
+.feature-emoji {
     width: 18px;
     height: 18px;
     color: #fff;
-    opacity: 0.92;
-    stroke-width: 2.2;
+    opacity: 1;
+    font-size: 16px;
+    line-height: 1;
+    font-family: "Montserrat", sans-serif;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
     flex: 0 0 18px;
 }
 
