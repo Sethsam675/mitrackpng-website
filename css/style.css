@@ -927,6 +927,123 @@ footer a {
     }
 }
 
+
+
+/* =========================
+   RESPONSIVE ENHANCEMENTS
+========================= */
+.hero {
+    width: min(100%, 900px);
+    padding: clamp(72px, 12vw, 100px) 20px clamp(48px, 8vw, 60px);
+}
+
+.hero h1 {
+    font-size: clamp(1.95rem, 5.5vw, 2.625rem);
+    line-height: 1.2;
+}
+
+.hero p {
+    max-width: 68ch;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.section-title h2 {
+    font-size: clamp(1.65rem, 4.2vw, 2rem);
+}
+
+.grid,
+.feedback-display-grid {
+    grid-template-columns: repeat(auto-fit, minmax(min(100%, 260px), 1fr));
+}
+
+.card,
+.feedback-card,
+.stat-card,
+.testimonial-card {
+    height: 100%;
+}
+
+.map-container {
+    max-width: 100%;
+}
+
+.map-info {
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+}
+
+.map-info span {
+    flex: 1 1 180px;
+    min-width: 0;
+}
+
+@media (max-width: 1024px) {
+    .section {
+        padding: 82px 20px;
+    }
+
+    .section-title {
+        margin-bottom: 42px;
+    }
+
+    .grid,
+    .feedback-display-grid {
+        gap: 20px;
+    }
+}
+
+@media (max-width: 720px) {
+    .hero-buttons {
+        flex-direction: column;
+        align-items: stretch;
+    }
+
+    .hero-buttons .btn {
+        width: 100%;
+        text-align: center;
+    }
+
+    .card,
+    .feedback-card,
+    .stat-card,
+    .testimonial-card {
+        padding: 20px;
+    }
+
+    .map-info span {
+        flex-basis: 100%;
+    }
+
+    .feedback-footer {
+        gap: 10px;
+    }
+}
+
+@media (max-width: 480px) {
+    nav {
+        padding-inline: 10px;
+    }
+
+    .logo {
+        height: 54px;
+    }
+
+    .section {
+        padding: 58px 14px;
+    }
+
+    .star-rating {
+        font-size: 24px;
+        gap: 4px;
+    }
+
+    .rating-text {
+        font-size: 12px;
+    }
+}
+
 /* =========================
    ANIMATIONS
 ========================= */
