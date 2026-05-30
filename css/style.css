@@ -326,7 +326,7 @@ nav {
     flex-direction: column;
     align-items: center;
     justify-content: space-between;
-    gap: clamp(10px, 5vw, 19px);
+    gap: clamp(10px, 2vw, 19px);
     text-shadow: 0 4px 22px rgba(0, 0, 0, 0.85);
 }
 
