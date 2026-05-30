@@ -41,13 +41,7 @@ body::before {
     inset: 0;
     width: 100%;
     height: 100%;
-    background: 
-        radial-gradient(ellipse 80% 60% at 20% 30%, rgba(13, 110, 253, 0.18) 0%, transparent 50%),
-        radial-gradient(ellipse 70% 80% at 80% 20%, rgba(245, 196, 0, 0.08) 0%, transparent 45%),
-        radial-gradient(ellipse 90% 100% at 50% 80%, rgba(13, 110, 253, 0.12) 0%, transparent 55%),
-        radial-gradient(ellipse 60% 70% at 85% 75%, rgba(245, 196, 0, 0.06) 0%, transparent 50%),
-        radial-gradient(circle at 15% 70%, rgba(13, 110, 253, 0.1) 0%, transparent 40%),
-        linear-gradient(130deg, #050505 0%, #0a0a0a 25%, #0d1b2a 50%, #020617 100%);
+    background: radial-gradient(ellipse 80% 60% at 20% 30%, rgba(13, 110, 253, 0.18) 0%, transparent 50%), radial-gradient(ellipse 70% 80% at 80% 20%, rgba(245, 196, 0, 0.08) 0%, transparent 45%), radial-gradient(ellipse 90% 100% at 50% 80%, rgba(13, 110, 253, 0.12) 0%, transparent 55%), radial-gradient(ellipse 60% 70% at 85% 75%, rgba(245, 196, 0, 0.06) 0%, transparent 50%), radial-gradient(circle at 15% 70%, rgba(13, 110, 253, 0.1) 0%, transparent 40%), linear-gradient(130deg, #050505 0%, #0a0a0a 25%, #0d1b2a 50%, #020617 100%);
     z-index: -2;
     filter: blur(40px);
     pointer-events: none;
@@ -60,10 +54,7 @@ body::after {
     inset: 0;
     width: 100%;
     height: 100%;
-    background: 
-        radial-gradient(ellipse 100% 80% at 0% 50%, rgba(13, 110, 253, 0.06) 0%, transparent 40%),
-        radial-gradient(ellipse 75% 90% at 100% 40%, rgba(245, 196, 0, 0.04) 0%, transparent 45%),
-        radial-gradient(circle at 50% 0%, rgba(13, 110, 253, 0.08) 0%, transparent 50%);
+    background: radial-gradient(ellipse 100% 80% at 0% 50%, rgba(13, 110, 253, 0.06) 0%, transparent 40%), radial-gradient(ellipse 75% 90% at 100% 40%, rgba(245, 196, 0, 0.04) 0%, transparent 45%), radial-gradient(circle at 50% 0%, rgba(13, 110, 253, 0.08) 0%, transparent 50%);
     z-index: -1;
     filter: blur(60px);
     pointer-events: none;
@@ -213,11 +204,12 @@ nav {
     isolation: isolate;
     width: 100%;
     max-width: none;
-    min-height: clamp(520px, 72vh, 760px);
+    height: clamp(520px, 72vh, 760px);
     margin: 0;
-    padding: clamp(118px, 15vw, 170px) 20px clamp(72px, 10vw, 120px);
+    padding: clamp(36px, 8vw, 76px) 20px clamp(42px, 9vw, 96px);
     display: grid;
-    place-items: center;
+    align-items: stretch;
+    justify-items: center;
     overflow: hidden;
 }
 
@@ -270,25 +262,32 @@ nav {
 
 .about-hero-content {
     width: min(100%, 900px);
-    padding: clamp(28px, 5vw, 52px);
-    border: 1px solid rgba(255, 255, 255, 0.12);
-    border-radius: 28px;
-    background: rgba(2, 6, 23, 0.56);
-    box-shadow: 0 24px 70px rgba(0, 0, 0, 0.42);
-    backdrop-filter: blur(5px);
+    min-height: 100%;
+    padding: clamp(28px, 6vw, 58px) clamp(20px, 5vw, 52px);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    gap: clamp(24px, 5vw, 48px);
+    text-shadow: 0 4px 22px rgba(0, 0, 0, 0.85);
+}
+
+.about-hero-content p {
+    color: rgba(255, 255, 255, 0.9);
+    font-weight: 400;
 }
 
 .about-slideshow-label {
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    margin-bottom: 18px;
-    padding: 8px 16px;
-    border: 1px solid rgba(245, 196, 0, 0.42);
-    border-radius: 999px;
-    background: rgba(245, 196, 0, 0.12);
+    margin-top: auto;
+    padding: 0;
+    border: 0;
+    border-radius: 0;
+    background: transparent;
     color: var(--primary-gold);
-    font-size: 0.82rem;
+    font-size: clamp(0.85rem, 2.7vw, 1.05rem);
     font-weight: 700;
     letter-spacing: 0.08em;
     text-transform: uppercase;
