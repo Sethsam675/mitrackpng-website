@@ -321,7 +321,7 @@ nav {
 .about-hero-content {
     width: min(100%, 900px);
     min-height: 100%;
-    padding: clamp(10px, 6vw, 58px) clamp(7px, 5vw, 52px);
+    padding: clamp(10px, 6vw, 20px) clamp(7px, 5vw, 20px);
     display: flex;
     flex-direction: column;
     align-items: center;
