@@ -47,6 +47,16 @@ body::before {
     pointer-events: none;
 }
 
+body.home-page::before {
+    inset: -28px;
+    width: auto;
+    height: auto;
+    background: linear-gradient(130deg, rgba(5, 5, 5, 0.9) 0%, rgba(10, 10, 10, 0.82) 36%, rgba(13, 27, 42, 0.78) 68%, rgba(2, 6, 23, 0.92) 100%), radial-gradient(ellipse 80% 60% at 20% 30%, rgba(13, 110, 253, 0.2) 0%, transparent 50%), radial-gradient(ellipse 70% 80% at 80% 20%, rgba(245, 196, 0, 0.1) 0%, transparent 45%), url("../assets/images/background_img.jpg") center / cover no-repeat;
+    opacity: 0.8;
+    filter: blur(18px) saturate(1.08);
+    transform: scale(1.03);
+}
+
 /* Additional layered depth effect */
 body::after {
     content: "";
@@ -105,12 +115,16 @@ img {
 
 nav {
     position: sticky;
-    top: 0;
+    top: 12px;
     z-index: 1000;
-    background: rgba(0, 0, 0, 0.92);
-    backdrop-filter: blur(6px);
-    border-bottom: 1px solid rgba(255, 255, 255, 0.06);
-    padding: 10px 20px;
+    width: min(calc(100% - 32px), 1180px);
+    margin: 12px auto 0;
+    background: rgba(0, 0, 0, 0.82);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 999px;
+    box-shadow: 0 18px 45px rgba(0, 0, 0, 0.35);
+    padding: 10px 22px;
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -158,12 +172,16 @@ nav {
     display: inline-flex;
     align-items: center;
     min-height: 44px;
+    border-radius: 999px;
+    padding: 0 12px;
+    transition: color 0.3s ease, background 0.3s ease;
 }
 
 #primary-navigation a:hover,
 #primary-navigation a:focus-visible,
 #primary-navigation a.active {
     color: var(--primary-gold);
+    background: rgba(255, 255, 255, 0.06);
 }
 
 /* =========================
@@ -1045,6 +1063,8 @@ footer a {
 
     nav {
         flex-wrap: wrap;
+        width: min(calc(100% - 20px), 1180px);
+        border-radius: 28px;
         padding: 8px 14px;
     }
 
@@ -1073,7 +1093,7 @@ footer a {
         width: 100%;
         justify-content: center;
         padding: 8px 12px;
-        border-radius: 8px;
+        border-radius: 999px;
     }
 
     .form-grid {
