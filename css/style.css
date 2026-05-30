@@ -462,6 +462,24 @@ nav {
     pointer-events: none;
 }
 
+.home-page .map-section {
+    margin-top: -1px;
+    isolation: isolate;
+    overflow: visible;
+}
+
+.home-page .map-section::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: clamp(-110px, -11vw, -70px);
+    height: clamp(110px, 13vw, 160px);
+    background: linear-gradient(to top, #081018 0%, rgba(8, 16, 24, 0.96) 24%, rgba(9, 18, 28, 0.76) 48%, rgba(10, 19, 30, 0) 100%);
+    pointer-events: none;
+    z-index: 0;
+}
+
 /* INNER CONTAINER */
 .container {
     max-width: 1200px;
