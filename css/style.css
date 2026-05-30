@@ -331,8 +331,9 @@ nav {
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: space-between;
+    justify-content: center;
     gap: clamp(10px, 2vw, 19px);
+    transform: translateY(clamp(28px, 6vh, 56px));
     text-shadow: 0 4px 22px rgba(0, 0, 0, 0.85);
 }
 
