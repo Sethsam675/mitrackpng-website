@@ -76,6 +76,12 @@ img {
     display: block;
 }
 
+:where(a, button, input, select, textarea, [tabindex]):focus-visible {
+    outline: 3px solid var(--primary-gold);
+    outline-offset: 3px;
+}
+
+
 /* =========================
    NAVBAR
 ========================= */
@@ -154,6 +160,13 @@ nav {
     height: 44px;
     cursor: pointer;
 }
+
+.menu-icon {
+    width: 24px;
+    height: 24px;
+    pointer-events: none;
+}
+
 
 #primary-navigation {
     display: flex;
@@ -790,21 +803,16 @@ nav {
     flex: 0 0 28px;
 }
 
-.product-emoji {
-    font-size: 16px;
-    line-height: 1;
-    color: #fff;
-    font-family: "Montserrat", sans-serif;
+.product-title-icon svg,
+.feature-icon svg {
+    width: 100%;
+    height: 100%;
 }
 
-.feature-emoji {
+.feature-icon {
     width: 18px;
     height: 18px;
-    color: #fff;
-    opacity: 1;
-    font-size: 16px;
-    line-height: 1;
-    font-family: "Montserrat", sans-serif;
+    color: var(--primary-gold);
     display: inline-flex;
     align-items: center;
     justify-content: center;
@@ -949,6 +957,11 @@ footer a {
     text-decoration: none;
     border: 1px solid transparent;
 }
+
+.icon-btn svg {
+    flex: 0 0 16px;
+}
+
 
 .icon-btn-whatsapp {
     background: rgba(37, 211, 102, 0.2);
@@ -1310,4 +1323,24 @@ footer a {
     0% { transform: scale(1); opacity: 0.9; }
     70% { transform: scale(1.35); opacity: 0.3; }
     100% { transform: scale(1); opacity: 0.9; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    html {
+        scroll-behavior: auto;
+    }
+
+    *,
+    *::before,
+    *::after {
+        animation-duration: 0.001ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.001ms !important;
+        scroll-behavior: auto !important;
+    }
+
+    .fade-in {
+        opacity: 1;
+        transform: none;
+    }
 }

@@ -21,6 +21,15 @@ document.addEventListener("DOMContentLoaded", function () {
       setMenuState(!nav.classList.contains("open"));
     });
 
+
+    if (primaryNavigation) {
+      const currentPage = window.location.pathname.split("/").pop() || "index.html";
+      primaryNavigation.querySelectorAll("a[href]").forEach((link) => {
+        const linkPage = link.getAttribute("href").split("#")[0];
+        link.classList.toggle("active", linkPage === currentPage);
+      });
+    }
+
     if (primaryNavigation) {
       primaryNavigation.querySelectorAll("a").forEach((link) => {
         link.addEventListener("click", function () {

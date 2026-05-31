@@ -72,10 +72,10 @@ document.addEventListener("DOMContentLoaded", function () {
         </div>
       </div>
       <p class="feedback-text">"${safeComment}"</p>
-      <footer class="feedback-footer">
+      <div class="feedback-footer">
         <span class="feedback-author">${safeName}</span>
         <span class="feedback-date">Posted ${new Date(entry.createdAt).toLocaleDateString()}</span>
-      </footer>
+      </div>
     `;
 
     return card;
