@@ -24,9 +24,10 @@ html {
 }
 
 body {
-    font-family: 'Montserrat', sans-serif;
+    font-family: 'Montserrat', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
     background: linear-gradient(130deg, #050505, #0a0a0a, #0d1b2a, #020617);
     color: #fff;
+    font-size: 16px;
     line-height: 1.6;
     position: relative;
     overflow-x: hidden;
@@ -79,6 +80,26 @@ img {
 :where(a, button, input, select, textarea, [tabindex]):focus-visible {
     outline: 3px solid var(--primary-gold);
     outline-offset: 3px;
+}
+
+.skip-link {
+    position: absolute;
+    top: 16px;
+    left: 16px;
+    z-index: 2000;
+    transform: translateY(-160%);
+    background: var(--primary-gold);
+    color: #000;
+    padding: 10px 16px;
+    border-radius: 999px;
+    font-weight: 700;
+    text-decoration: none;
+    box-shadow: 0 10px 24px rgba(0, 0, 0, 0.35);
+    transition: transform 0.2s ease;
+}
+
+.skip-link:focus-visible {
+    transform: translateY(0);
 }
 
 
@@ -215,7 +236,7 @@ nav {
 }
 
 .hero p {
-    color: #aaa;
+    color: #d8d8d8;
     margin-top: 15px;
 }
 
@@ -228,6 +249,37 @@ nav {
     gap: 14px;
     justify-content: center;
     flex-wrap: wrap;
+}
+
+.hero-contact {
+    color: #d8d8d8;
+    font-size: 15px;
+}
+
+.hero-contact a {
+    color: var(--primary-gold);
+    font-weight: 700;
+    text-underline-offset: 4px;
+}
+
+.hero-proof {
+    display: flex;
+    justify-content: center;
+    gap: 12px;
+    flex-wrap: wrap;
+    list-style: none;
+    padding: 0;
+}
+
+.hero-proof li {
+    border: 1px solid rgba(245, 196, 0, 0.24);
+    background: rgba(0, 0, 0, 0.32);
+    border-radius: 999px;
+    color: #f2f2f2;
+    font-size: 13px;
+    font-weight: 600;
+    padding: 8px 13px;
+    backdrop-filter: blur(8px);
 }
 
 .hero.about-hero {
@@ -414,14 +466,19 @@ nav {
    BUTTONS (UPGRADED)
 ========================= */
 .btn {
+    min-height: 44px;
     padding: 10px 18px;
     border-radius: 6px;
     font-size: 14px;
+    font-weight: 700;
     text-decoration: none;
     transition: 0.3s;
     position: relative;
     overflow: hidden;
-    display: inline-block;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
     border: none;
     cursor: pointer;
     font-family: inherit;
@@ -454,6 +511,14 @@ nav {
     border: 1px solid var(--primary-gold);
     color: var(--primary-gold);
     background: transparent;
+}
+
+.btn-small {
+    margin-top: 18px;
+    min-height: 42px;
+    color: #000;
+    background: var(--primary-gold);
+    font-size: 13px;
 }
 
 /* =========================
@@ -600,7 +665,7 @@ nav {
     margin-bottom: 10px;
 }
 
-.card a {
+.card a:not(.btn) {
     color: var(--light-blue);
     font-size: 13px;
 }
@@ -926,17 +991,38 @@ nav {
     background: linear-gradient(135deg, rgba(13,110,253,0.2), rgba(245,196,0,0.1));
 }
 
+.cta h3 {
+    color: var(--primary-gold);
+    font-size: clamp(1.6rem, 3vw, 2rem);
+    margin-bottom: 10px;
+}
+
+.cta p {
+    max-width: 58ch;
+    margin: 0 auto;
+    color: #d8d8d8;
+}
+
+.cta-actions {
+    display: flex;
+    justify-content: center;
+    gap: 14px;
+    flex-wrap: wrap;
+    margin-top: 24px;
+}
+
 /* =========================
    FOOTER
 ========================= */
 footer {
     text-align: center;
     padding: 30px;
-    color: #777;
+    color: #b8b8b8;
 }
 
 footer a {
     color: var(--light-blue);
+    font-weight: 600;
 }
 
 .contact-actions {
@@ -1250,14 +1336,21 @@ footer a {
 }
 
 @media (max-width: 720px) {
-    .hero-buttons {
+    .hero-buttons,
+    .cta-actions {
         flex-direction: column;
         align-items: stretch;
     }
 
-    .hero-buttons .btn {
+    .hero-buttons .btn,
+    .cta-actions .btn {
         width: 100%;
         text-align: center;
+    }
+
+    .hero-proof {
+        align-items: stretch;
+        flex-direction: column;
     }
 
     .card,

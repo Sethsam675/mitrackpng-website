@@ -26,7 +26,13 @@ document.addEventListener("DOMContentLoaded", function () {
       const currentPage = window.location.pathname.split("/").pop() || "index.html";
       primaryNavigation.querySelectorAll("a[href]").forEach((link) => {
         const linkPage = link.getAttribute("href").split("#")[0];
-        link.classList.toggle("active", linkPage === currentPage);
+        const isActive = linkPage === currentPage;
+        link.classList.toggle("active", isActive);
+        if (isActive) {
+          link.setAttribute("aria-current", "page");
+        } else {
+          link.removeAttribute("aria-current");
+        }
       });
     }
 

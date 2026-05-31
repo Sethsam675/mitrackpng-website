@@ -17,6 +17,7 @@
 <link rel="stylesheet" href="css/style.css?v=20260530">
 </head>
 <body class="home-page">
+<a class="skip-link" href="#main-content">Skip to main content</a>
 
 <nav>
   <div class="nav-left">
@@ -32,13 +33,20 @@
   </ul>
 </nav>
 
-<section class="hero">
-  <h1>Secure Your Assets & Operations in Real-Time</h1>
+<main id="main-content">
+<section class="hero" aria-labelledby="hero-title">
+  <h1 id="hero-title">Secure Your Assets & Operations in Real-Time</h1>
   <p>MiTrack PNG provides advanced GPS tracking, CCTV monitoring, and 24/7 rapid response solutions for businesses across Papua New Guinea.</p>
   <div class="hero-buttons">
-    <a href="contact.html" class="btn btn-primary">Request Consultation</a>
-      <a href="products.html" class="btn btn-outline">Explore Products</a>
+    <a href="contact.html" class="btn btn-primary">Request Security Assessment</a>
+    <a href="products.html" class="btn btn-outline">Explore Products</a>
   </div>
+  <p class="hero-contact">Need urgent tracking or security support? <a href="tel:+67575436507">Call +675 7543 6507</a></p>
+  <ul class="hero-proof" aria-label="MiTrack PNG service highlights">
+    <li>24/7 monitoring room</li>
+    <li>GPS + CCTV coverage</li>
+    <li>PNG-based response support</li>
+  </ul>
 </section>
 
 <section class="section map-section">
@@ -81,7 +89,7 @@
     <div class="card">
       <h4>24/7 Monitoring</h4>
       <p>Dedicated monitoring room with PCS TRU rapid response for emergencies and alerts.</p>
-      <a href="contact.html" class="btn btn-small">Learn More</a>
+      <a href="contact.html" class="btn btn-small">Discuss Monitoring</a>
     </div>
   </div>
 </section>
@@ -113,31 +121,35 @@
   </div>
   <div class="grid">
     <div class="testimonial-card">
-      <div class="stars" aria-label="Five star rating">*****</div>
-      <p>MiTrack has transformed how we monitor our fleet operations. Real-time tracking has improved efficiency and accountability across our business.</p>
-      <h4>Logistics Company</h4>
-      <span>Port Moresby</span>
+      <div class="stars" aria-label="Rated 5 out of 5 stars"><span aria-hidden="true">★★★★★</span></div>
+      <p>MiTrack helped our dispatch team see vehicle movement clearly throughout the day, improving route accountability and reducing check-in calls.</p>
+      <h4>Fleet Operations Manager</h4>
+      <span>Logistics provider, Port Moresby</span>
     </div>
     <div class="testimonial-card">
-      <div class="stars" aria-label="Five star rating">*****</div>
-      <p>The CCTV and monitoring solutions provided by MiTrack give us peace of mind knowing our assets are secure around the clock.</p>
-      <h4>Corporate Client</h4>
-      <span>Papua New Guinea</span>
+      <div class="stars" aria-label="Rated 5 out of 5 stars"><span aria-hidden="true">★★★★★</span></div>
+      <p>The CCTV and monitoring setup gives our management team a reliable view of critical areas after hours and faster escalation when alerts come in.</p>
+      <h4>Corporate Security Lead</h4>
+      <span>Commercial facilities, Papua New Guinea</span>
     </div>
     <div class="testimonial-card">
-      <div class="stars" aria-label="Five star rating">*****</div>
-      <p>Fast response, reliable systems, and excellent support. MiTrack is a partner we can depend on.</p>
-      <h4>Industrial Client</h4>
-      <span>Operations Team</span>
+      <div class="stars" aria-label="Rated 5 out of 5 stars"><span aria-hidden="true">★★★★★</span></div>
+      <p>MiTrack combines practical support with responsive communication, giving our operations team confidence that assets are being watched.</p>
+      <h4>Operations Supervisor</h4>
+      <span>Industrial client response team</span>
     </div>
   </div>
 </section>
 
-<section class="cta">
-  <h3>Ready to Protect Your Business?</h3>
-  <p>Contact us today and get a personalized consultation for your tracking and security needs.</p>
-  <a href="contact.html" class="btn btn-primary">Request Consultation</a>
+<section class="cta" aria-labelledby="cta-title">
+  <h3 id="cta-title">Ready to Protect Your Business?</h3>
+  <p>Book a security and tracking assessment, or call our team for urgent support.</p>
+  <div class="cta-actions">
+    <a href="contact.html" class="btn btn-primary">Request Security Assessment</a>
+    <a href="tel:+67575436507" class="btn btn-outline">Call +675 7543 6507</a>
+  </div>
 </section>
+</main>
 
 <footer>
   <p>© 2026 MiTrack PNG | Powered by Pacific Corporate Security</p>
