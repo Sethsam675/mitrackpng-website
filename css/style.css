@@ -1044,6 +1044,24 @@ footer a {
     flex-wrap: wrap;
 }
 
+.contact-person-card {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}
+
+.contact-profile-photo {
+    width: clamp(86px, 18vw, 112px);
+    height: clamp(86px, 18vw, 112px);
+    margin-bottom: 18px;
+    border-radius: 50%;
+    object-fit: cover;
+    object-position: center;
+    border: 3px solid rgba(245, 196, 0, 0.78);
+    box-shadow: 0 12px 28px rgba(0, 0, 0, 0.35), 0 0 0 7px rgba(77, 166, 255, 0.08);
+    background: linear-gradient(135deg, rgba(245, 196, 0, 0.18), rgba(77, 166, 255, 0.12));
+}
+
 .icon-btn {
     display: inline-flex;
     align-items: center;
