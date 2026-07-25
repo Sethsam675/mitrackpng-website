@@ -102,13 +102,16 @@ document.addEventListener("DOMContentLoaded", function () {
   // ==========================
   // PRODUCT INFINITE CAROUSEL
   // ==========================
+  const productCarousel = document.querySelector(".product-carousel");
   const productGrid = document.querySelector(".product-grid");
   const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
+  const desktopPointer = window.matchMedia("(hover: hover) and (pointer: fine) and (min-width: 769px)");
 
-  if (productGrid && !reduceMotion.matches) {
+  if (productCarousel && productGrid) {
     const originalCards = Array.from(productGrid.querySelectorAll(".product-card"));
+    const canUseMotion = !reduceMotion.matches && desktopPointer.matches;
 
-    if (originalCards.length > 0) {
+    if (originalCards.length > 0 && canUseMotion) {
       originalCards.forEach((card) => {
         const clone = card.cloneNode(true);
         clone.setAttribute("aria-hidden", "true");
@@ -125,54 +128,63 @@ document.addEventListener("DOMContentLoaded", function () {
         productGrid.style.setProperty("--product-carousel-distance", firstClone.offsetLeft + "px");
       }
 
-      setCarouselDistance();
-      const productCarousel = productGrid.parentElement;
-      productCarousel?.classList.add("has-infinite");
-      productGrid.classList.add("is-infinite");
-      window.addEventListener("resize", setCarouselDistance);
-      window.addEventListener("orientationchange", setCarouselDistance);
-
-      const desktopPointer = window.matchMedia("(hover: hover) and (pointer: fine) and (min-width: 769px)");
+      function setCarouselIntent(intent) {
+        productCarousel.dataset.carouselIntent = intent;
+      }
 
       function updateDesktopPointerNavigation(event) {
-        if (!desktopPointer.matches || !productCarousel) return;
-
         const rect = productCarousel.getBoundingClientRect();
-        const pointerRatio = (event.clientX - rect.left) / rect.width;
+        const pointerRatio = Math.min(Math.max((event.clientX - rect.left) / rect.width, 0), 1);
         const edgeDistance = Math.min(pointerRatio, 1 - pointerRatio);
         const edgeStrength = Math.max(0, (0.42 - edgeDistance) / 0.42);
 
-        if (edgeStrength <= 0) {
+        if (edgeStrength <= 0.08) {
           productGrid.classList.add("is-paused");
           productGrid.style.removeProperty("--product-carousel-direction");
           productGrid.style.removeProperty("--product-carousel-duration");
+          setCarouselIntent("paused");
           return;
         }
 
-        const duration = 42 - (edgeStrength * 28);
+        const duration = 46 - (edgeStrength * 32);
+        const isMovingBackward = pointerRatio < 0.5;
         productGrid.classList.remove("is-paused");
-        productGrid.style.setProperty("--product-carousel-direction", pointerRatio < 0.5 ? "reverse" : "normal");
+        productGrid.style.setProperty("--product-carousel-direction", isMovingBackward ? "reverse" : "normal");
         productGrid.style.setProperty("--product-carousel-duration", duration.toFixed(1) + "s");
+        setCarouselIntent(isMovingBackward ? "backward" : "forward");
+      }
+
+      function pauseCarouselBriefly() {
+        productGrid.classList.add("is-paused");
+        setCarouselIntent("paused");
+        window.clearTimeout(productGrid.carouselPauseTimer);
+        productGrid.carouselPauseTimer = window.setTimeout(() => {
+          productGrid.classList.remove("is-paused");
+          setCarouselIntent("auto");
+        }, 1800);
       }
 
       function resetDesktopPointerNavigation() {
         productGrid.classList.remove("is-paused");
         productGrid.style.removeProperty("--product-carousel-direction");
         productGrid.style.removeProperty("--product-carousel-duration");
+        setCarouselIntent("auto");
       }
 
-      productCarousel?.addEventListener("pointermove", updateDesktopPointerNavigation, { passive: true });
-      productCarousel?.addEventListener("pointerleave", resetDesktopPointerNavigation);
+      setCarouselDistance();
+      productCarousel.classList.add("has-infinite");
+      productCarousel.dataset.carouselIntent = "auto";
+      productGrid.classList.add("is-infinite");
+      window.addEventListener("resize", setCarouselDistance);
+      window.addEventListener("orientationchange", setCarouselDistance);
+      productCarousel.addEventListener("pointermove", updateDesktopPointerNavigation, { passive: true });
+      productCarousel.addEventListener("pointerleave", resetDesktopPointerNavigation);
 
       ["pointerdown", "touchstart", "wheel"].forEach((eventName) => {
-        productGrid.addEventListener(eventName, () => {
-          productGrid.classList.add("is-paused");
-          window.clearTimeout(productGrid.carouselPauseTimer);
-          productGrid.carouselPauseTimer = window.setTimeout(() => {
-            productGrid.classList.remove("is-paused");
-          }, 1800);
-        }, { passive: true });
+        productGrid.addEventListener(eventName, pauseCarouselBriefly, { passive: true });
       });
+    } else {
+      productCarousel.classList.add("is-touch-scroll");
     }
   }
 
