@@ -126,10 +126,43 @@ document.addEventListener("DOMContentLoaded", function () {
       }
 
       setCarouselDistance();
-      productGrid.parentElement?.classList.add("has-infinite");
+      const productCarousel = productGrid.parentElement;
+      productCarousel?.classList.add("has-infinite");
       productGrid.classList.add("is-infinite");
       window.addEventListener("resize", setCarouselDistance);
       window.addEventListener("orientationchange", setCarouselDistance);
+
+      const desktopPointer = window.matchMedia("(hover: hover) and (pointer: fine) and (min-width: 769px)");
+
+      function updateDesktopPointerNavigation(event) {
+        if (!desktopPointer.matches || !productCarousel) return;
+
+        const rect = productCarousel.getBoundingClientRect();
+        const pointerRatio = (event.clientX - rect.left) / rect.width;
+        const edgeDistance = Math.min(pointerRatio, 1 - pointerRatio);
+        const edgeStrength = Math.max(0, (0.42 - edgeDistance) / 0.42);
+
+        if (edgeStrength <= 0) {
+          productGrid.classList.add("is-paused");
+          productGrid.style.removeProperty("--product-carousel-direction");
+          productGrid.style.removeProperty("--product-carousel-duration");
+          return;
+        }
+
+        const duration = 42 - (edgeStrength * 28);
+        productGrid.classList.remove("is-paused");
+        productGrid.style.setProperty("--product-carousel-direction", pointerRatio < 0.5 ? "reverse" : "normal");
+        productGrid.style.setProperty("--product-carousel-duration", duration.toFixed(1) + "s");
+      }
+
+      function resetDesktopPointerNavigation() {
+        productGrid.classList.remove("is-paused");
+        productGrid.style.removeProperty("--product-carousel-direction");
+        productGrid.style.removeProperty("--product-carousel-duration");
+      }
+
+      productCarousel?.addEventListener("pointermove", updateDesktopPointerNavigation, { passive: true });
+      productCarousel?.addEventListener("pointerleave", resetDesktopPointerNavigation);
 
       ["pointerdown", "touchstart", "wheel"].forEach((eventName) => {
         productGrid.addEventListener(eventName, () => {
