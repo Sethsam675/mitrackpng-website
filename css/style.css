@@ -651,6 +651,8 @@ nav {
 
 .product-grid {
     --product-carousel-distance: 0px;
+    --product-carousel-duration: 34s;
+    --product-carousel-direction: normal;
     display: flex;
     gap: clamp(16px, 2.4vw, 30px);
     align-items: stretch;
@@ -670,10 +672,10 @@ nav {
 
 .product-grid.is-infinite {
     overflow: visible;
-    animation: product-carousel-scroll 34s linear infinite;
+    animation: product-carousel-scroll var(--product-carousel-duration) linear infinite;
+    animation-direction: var(--product-carousel-direction);
 }
 
-.product-carousel:hover .product-grid.is-infinite,
 .product-carousel:focus-within .product-grid.is-infinite,
 .product-grid.is-infinite.is-paused {
     animation-play-state: paused;
@@ -694,9 +696,25 @@ nav {
 }
 
 .product-card {
-    flex: 0 0 clamp(260px, 28vw, 320px);
+    flex: 0 0 clamp(300px, 27vw, 340px);
+    width: clamp(300px, 27vw, 340px);
     min-width: 0;
+    min-height: 475px;
     scroll-snap-align: start;
+}
+
+.product-card.card {
+    display: flex;
+    flex-direction: column;
+}
+
+.product-card .features {
+    flex: 1;
+}
+
+.product-card .btn {
+    align-self: flex-start;
+    margin-top: auto;
 }
 
 /* =========================
@@ -1502,6 +1520,8 @@ footer a {
 
     .product-card {
         flex-basis: min(86vw, 300px);
+        width: min(86vw, 300px);
+        min-height: 0;
     }
 
     .star-rating {
