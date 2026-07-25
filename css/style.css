@@ -606,6 +606,51 @@ nav {
     gap: 30px;
 }
 
+.product-slider-hint {
+    max-width: 1200px;
+    margin: -30px auto 24px;
+    color: #d6d6d6;
+    font-size: 14px;
+    text-align: center;
+}
+
+.product-grid {
+    display: flex;
+    gap: clamp(16px, 2.4vw, 30px);
+    align-items: stretch;
+    overflow-x: auto;
+    overflow-y: hidden;
+    padding: 6px max(20px, calc((100vw - 1200px) / 2)) 22px;
+    margin-left: -20px;
+    margin-right: -20px;
+    max-width: none;
+    scroll-snap-type: x mandatory;
+    scroll-padding-inline: max(20px, calc((100vw - 1200px) / 2));
+    -webkit-overflow-scrolling: touch;
+    scrollbar-color: var(--primary-gold) rgba(255, 255, 255, 0.12);
+    scrollbar-width: thin;
+}
+
+.product-grid::-webkit-scrollbar {
+    height: 10px;
+}
+
+.product-grid::-webkit-scrollbar-track {
+    background: rgba(255, 255, 255, 0.08);
+    border-radius: 999px;
+}
+
+.product-grid::-webkit-scrollbar-thumb {
+    background: var(--primary-gold);
+    border-radius: 999px;
+}
+
+.product-card {
+    flex: 0 0 clamp(260px, 28vw, 320px);
+    min-width: 0;
+    scroll-snap-align: start;
+}
+
 /* =========================
    GLASS CARDS (FINAL)
 ========================= */
@@ -849,6 +894,7 @@ nav {
     display: flex;
     align-items: center;
     gap: 12px;
+    line-height: 1.25;
 }
 
 .product-title-icon {
@@ -1394,6 +1440,17 @@ footer a {
 
     .section {
         padding: 58px 14px;
+    }
+
+    .product-grid {
+        margin-left: -14px;
+        margin-right: -14px;
+        padding-inline: 14px;
+        scroll-padding-inline: 14px;
+    }
+
+    .product-card {
+        flex-basis: min(86vw, 300px);
     }
 
     .star-rating {
