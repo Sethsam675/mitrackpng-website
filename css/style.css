@@ -731,6 +731,10 @@ nav {
     animation-direction: var(--product-carousel-direction);
 }
 
+.product-grid.is-infinite.is-cursor-driven {
+    animation: none;
+}
+
 .product-carousel:focus-within .product-grid.is-infinite,
 .product-grid.is-infinite.is-paused {
     animation-play-state: paused;

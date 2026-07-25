@@ -122,63 +122,127 @@ document.addEventListener("DOMContentLoaded", function () {
         productGrid.appendChild(clone);
       });
 
+      const minPointerSpeed = 18;
+      const maxPointerSpeed = 92;
+      const centerPauseRadius = 0.12;
+      const smoothing = 0.12;
+      let carouselDistance = 0;
+      let carouselOffset = 0;
+      let carouselVelocity = 0;
+      let targetCarouselVelocity = 28;
+      let lastFrameTime = null;
+      let pointerIsInsideCarousel = false;
+      let interactionPauseActive = false;
+
       function setCarouselDistance() {
         const firstClone = productGrid.querySelectorAll(".product-card")[originalCards.length];
         if (!firstClone) return;
-        productGrid.style.setProperty("--product-carousel-distance", firstClone.offsetLeft + "px");
+        carouselDistance = firstClone.offsetLeft;
+        productGrid.style.setProperty("--product-carousel-distance", carouselDistance + "px");
+        carouselOffset = wrapCarouselOffset(carouselOffset);
+        updateCarouselTransform();
       }
 
       function setCarouselIntent(intent) {
         productCarousel.dataset.carouselIntent = intent;
       }
 
-      function updateDesktopPointerNavigation(event) {
+      function wrapCarouselOffset(offset) {
+        if (carouselDistance <= 0) return 0;
+        return ((offset % carouselDistance) + carouselDistance) % carouselDistance;
+      }
+
+      function updateCarouselTransform() {
+        productGrid.style.transform = "translate3d(" + (-carouselOffset).toFixed(2) + "px, 0, 0)";
+      }
+
+      function setTargetCarouselVelocity(velocity, intent) {
+        targetCarouselVelocity = velocity;
+        productGrid.classList.toggle("is-paused", velocity === 0);
+        setCarouselIntent(intent);
+      }
+
+      function getPointerVelocity(event) {
         const rect = productCarousel.getBoundingClientRect();
         const pointerRatio = Math.min(Math.max((event.clientX - rect.left) / rect.width, 0), 1);
-        const edgeDistance = Math.min(pointerRatio, 1 - pointerRatio);
-        const edgeStrength = Math.max(0, (0.42 - edgeDistance) / 0.42);
+        const distanceFromCenter = Math.abs(pointerRatio - 0.5);
 
-        if (edgeStrength <= 0.08) {
-          productGrid.classList.add("is-paused");
-          productGrid.style.removeProperty("--product-carousel-direction");
-          productGrid.style.removeProperty("--product-carousel-duration");
-          setCarouselIntent("paused");
-          return;
+        if (distanceFromCenter <= centerPauseRadius) {
+          return { velocity: 0, intent: "paused" };
         }
 
-        const duration = 46 - (edgeStrength * 32);
-        const isMovingBackward = pointerRatio < 0.5;
-        productGrid.classList.remove("is-paused");
-        productGrid.style.setProperty("--product-carousel-direction", isMovingBackward ? "reverse" : "normal");
-        productGrid.style.setProperty("--product-carousel-duration", duration.toFixed(1) + "s");
-        setCarouselIntent(isMovingBackward ? "backward" : "forward");
+        // Convert center-to-edge distance into a gradual speed curve:
+        // center stays still, mid-edge starts slow, and the outer edge reaches max speed.
+        const edgeStrength = (distanceFromCenter - centerPauseRadius) / (0.5 - centerPauseRadius);
+        const easedStrength = edgeStrength * edgeStrength;
+        const speed = minPointerSpeed + ((maxPointerSpeed - minPointerSpeed) * easedStrength);
+        const direction = pointerRatio < 0.5 ? -1 : 1;
+
+        return {
+          velocity: speed * direction,
+          intent: direction < 0 ? "backward" : "forward"
+        };
+      }
+
+      function updateDesktopPointerNavigation(event) {
+        pointerIsInsideCarousel = true;
+        const pointerState = getPointerVelocity(event);
+        setTargetCarouselVelocity(pointerState.velocity, pointerState.intent);
       }
 
       function pauseCarouselBriefly() {
-        productGrid.classList.add("is-paused");
-        setCarouselIntent("paused");
+        interactionPauseActive = true;
+        setTargetCarouselVelocity(0, "paused");
         window.clearTimeout(productGrid.carouselPauseTimer);
         productGrid.carouselPauseTimer = window.setTimeout(() => {
-          productGrid.classList.remove("is-paused");
-          setCarouselIntent("auto");
+          interactionPauseActive = false;
+          if (!pointerIsInsideCarousel) {
+            setTargetCarouselVelocity(28, "auto");
+          }
         }, 1800);
       }
 
       function resetDesktopPointerNavigation() {
-        productGrid.classList.remove("is-paused");
-        productGrid.style.removeProperty("--product-carousel-direction");
-        productGrid.style.removeProperty("--product-carousel-duration");
-        setCarouselIntent("auto");
+        pointerIsInsideCarousel = false;
+        if (!interactionPauseActive) {
+          setTargetCarouselVelocity(28, "auto");
+        }
+      }
+
+      function animateCarousel(frameTime) {
+        if (lastFrameTime === null) {
+          lastFrameTime = frameTime;
+        }
+
+        const elapsedSeconds = Math.min((frameTime - lastFrameTime) / 1000, 0.05);
+        lastFrameTime = frameTime;
+        // Ease toward the target velocity so crossing the center or changing sides does not jump.
+        carouselVelocity += (targetCarouselVelocity - carouselVelocity) * smoothing;
+
+        if (Math.abs(carouselVelocity) < 0.01 && targetCarouselVelocity === 0) {
+          carouselVelocity = 0;
+        }
+
+        carouselOffset = wrapCarouselOffset(carouselOffset + (carouselVelocity * elapsedSeconds));
+        updateCarouselTransform();
+        window.requestAnimationFrame(animateCarousel);
       }
 
       setCarouselDistance();
       productCarousel.classList.add("has-infinite");
       productCarousel.dataset.carouselIntent = "auto";
-      productGrid.classList.add("is-infinite");
+      productGrid.classList.add("is-infinite", "is-cursor-driven");
       window.addEventListener("resize", setCarouselDistance);
       window.addEventListener("orientationchange", setCarouselDistance);
       productCarousel.addEventListener("pointermove", updateDesktopPointerNavigation, { passive: true });
       productCarousel.addEventListener("pointerleave", resetDesktopPointerNavigation);
+      productCarousel.addEventListener("focusin", () => setTargetCarouselVelocity(0, "paused"));
+      productCarousel.addEventListener("focusout", () => {
+        if (!pointerIsInsideCarousel && !interactionPauseActive) {
+          setTargetCarouselVelocity(28, "auto");
+        }
+      });
+      window.requestAnimationFrame(animateCarousel);
 
       ["pointerdown", "touchstart", "wheel"].forEach((eventName) => {
         productGrid.addEventListener(eventName, pauseCarouselBriefly, { passive: true });
