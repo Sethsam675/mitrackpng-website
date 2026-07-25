@@ -310,7 +310,7 @@ nav {
     height: 100%;
     opacity: 0;
     transform: scale(1.06);
-    animation: aboutSlideShow 70s infinite;
+    animation: aboutSlideShow 50s infinite;
 }
 
 .about-slide::before,
@@ -401,22 +401,6 @@ nav {
     animation-delay: 45s;
 }
 
-.about-slide-11 {
-    animation-delay: 50s;
-}
-
-.about-slide-12 {
-    animation-delay: 55s;
-}
-
-.about-slide-13 {
-    animation-delay: 60s;
-}
-
-.about-slide-14 {
-    animation-delay: 65s;
-}
-
 .about-hero-content {
     position: relative;
     z-index: 2;
@@ -443,16 +427,16 @@ nav {
         transform: scale(1.06);
     }
 
-    1.8% {
+    2.52% {
         opacity: 1;
     }
 
-    5.75% {
+    8% {
         opacity: 1;
         transform: scale(1);
     }
 
-    7.14% {
+    10% {
         opacity: 0;
         transform: scale(1);
     }
