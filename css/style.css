@@ -614,21 +614,69 @@ nav {
     text-align: center;
 }
 
+.product-carousel {
+    position: relative;
+    max-width: none;
+    margin-left: -20px;
+    margin-right: -20px;
+    overflow-x: auto;
+    overflow-y: hidden;
+    scrollbar-width: thin;
+}
+
+.product-carousel.has-infinite {
+    overflow: hidden;
+}
+
+.product-carousel.has-infinite::before,
+.product-carousel.has-infinite::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    z-index: 2;
+    width: min(120px, 16vw);
+    pointer-events: none;
+}
+
+.product-carousel.has-infinite::before {
+    left: 0;
+    background: linear-gradient(90deg, var(--deep-black), rgba(8, 8, 8, 0));
+}
+
+.product-carousel.has-infinite::after {
+    right: 0;
+    background: linear-gradient(270deg, var(--deep-black), rgba(8, 8, 8, 0));
+}
+
 .product-grid {
+    --product-carousel-distance: 0px;
     display: flex;
     gap: clamp(16px, 2.4vw, 30px);
     align-items: stretch;
+    width: max-content;
+    min-width: 100%;
     overflow-x: auto;
     overflow-y: hidden;
     padding: 6px max(20px, calc((100vw - 1200px) / 2)) 22px;
-    margin-left: -20px;
-    margin-right: -20px;
     max-width: none;
     scroll-snap-type: x mandatory;
     scroll-padding-inline: max(20px, calc((100vw - 1200px) / 2));
     -webkit-overflow-scrolling: touch;
     scrollbar-color: var(--primary-gold) rgba(255, 255, 255, 0.12);
     scrollbar-width: thin;
+    will-change: transform;
+}
+
+.product-grid.is-infinite {
+    overflow: visible;
+    animation: product-carousel-scroll 34s linear infinite;
+}
+
+.product-carousel:hover .product-grid.is-infinite,
+.product-carousel:focus-within .product-grid.is-infinite,
+.product-grid.is-infinite.is-paused {
+    animation-play-state: paused;
 }
 
 .product-grid::-webkit-scrollbar {
@@ -1442,9 +1490,12 @@ footer a {
         padding: 58px 14px;
     }
 
-    .product-grid {
+    .product-carousel {
         margin-left: -14px;
         margin-right: -14px;
+    }
+
+    .product-grid {
         padding-inline: 14px;
         scroll-padding-inline: 14px;
     }
@@ -1478,6 +1529,16 @@ footer a {
     transform: translateY(0);
 }
 
+@keyframes product-carousel-scroll {
+    from {
+        transform: translate3d(0, 0, 0);
+    }
+
+    to {
+        transform: translate3d(calc(-1 * var(--product-carousel-distance)), 0, 0);
+    }
+}
+
 @keyframes blink {
     0%, 49% { opacity: 1; }
     50%, 100% { opacity: 0.15; }
@@ -1506,5 +1567,10 @@ footer a {
     .fade-in {
         opacity: 1;
         transform: none;
+    }
+
+    .product-grid.is-infinite {
+        animation: none;
+        overflow-x: auto;
     }
 }

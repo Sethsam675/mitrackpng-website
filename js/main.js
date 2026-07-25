@@ -98,6 +98,51 @@ document.addEventListener("DOMContentLoaded", function () {
     });
   }
 
+
+  // ==========================
+  // PRODUCT INFINITE CAROUSEL
+  // ==========================
+  const productGrid = document.querySelector(".product-grid");
+  const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
+
+  if (productGrid && !reduceMotion.matches) {
+    const originalCards = Array.from(productGrid.querySelectorAll(".product-card"));
+
+    if (originalCards.length > 0) {
+      originalCards.forEach((card) => {
+        const clone = card.cloneNode(true);
+        clone.setAttribute("aria-hidden", "true");
+        clone.setAttribute("role", "presentation");
+        clone.querySelectorAll("a, button, input, select, textarea, [tabindex]").forEach((element) => {
+          element.setAttribute("tabindex", "-1");
+        });
+        productGrid.appendChild(clone);
+      });
+
+      function setCarouselDistance() {
+        const firstClone = productGrid.querySelectorAll(".product-card")[originalCards.length];
+        if (!firstClone) return;
+        productGrid.style.setProperty("--product-carousel-distance", firstClone.offsetLeft + "px");
+      }
+
+      setCarouselDistance();
+      productGrid.parentElement?.classList.add("has-infinite");
+      productGrid.classList.add("is-infinite");
+      window.addEventListener("resize", setCarouselDistance);
+      window.addEventListener("orientationchange", setCarouselDistance);
+
+      ["pointerdown", "touchstart", "wheel"].forEach((eventName) => {
+        productGrid.addEventListener(eventName, () => {
+          productGrid.classList.add("is-paused");
+          window.clearTimeout(productGrid.carouselPauseTimer);
+          productGrid.carouselPauseTimer = window.setTimeout(() => {
+            productGrid.classList.remove("is-paused");
+          }, 1800);
+        }, { passive: true });
+      });
+    }
+  }
+
   // ==========================
   // LUCIDE ICONS
   // ==========================
