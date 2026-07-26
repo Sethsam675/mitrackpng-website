@@ -21,6 +21,7 @@
 ========================= */
 html {
     scroll-behavior: smooth;
+    overflow-x: clip;
 }
 
 body {
@@ -607,10 +608,11 @@ nav {
 }
 
 .product-slider-hint {
-    max-width: 1200px;
+    max-width: 980px;
     margin: -30px auto 24px;
-    color: #d6d6d6;
+    color: rgba(255, 255, 255, 0.84);
     font-size: 14px;
+    line-height: 1.65;
     text-align: center;
 }
 
@@ -621,15 +623,22 @@ nav {
     margin-right: -20px;
     overflow-x: auto;
     overflow-y: hidden;
+    overscroll-behavior-inline: contain;
     scrollbar-width: thin;
 }
 
 .product-carousel.has-infinite {
     overflow: hidden;
+    cursor: ew-resize;
 }
 
 .product-carousel.is-touch-scroll {
     scroll-snap-type: x mandatory;
+    cursor: grab;
+}
+
+.product-carousel.is-touch-scroll:active {
+    cursor: grabbing;
 }
 
 .product-carousel.has-infinite::before,
@@ -711,7 +720,7 @@ nav {
 
 .product-grid {
     --product-carousel-distance: 0px;
-    --product-carousel-duration: 34s;
+    --product-carousel-duration: 30s;
     --product-carousel-direction: normal;
     display: flex;
     gap: clamp(16px, 2.4vw, 30px);
@@ -764,7 +773,8 @@ nav {
     flex: 0 0 var(--product-card-width);
     width: var(--product-card-width);
     min-width: 0;
-    height: clamp(500px, 42vw, 540px);
+    min-height: clamp(520px, 42vw, 560px);
+    height: auto;
     box-sizing: border-box;
     scroll-snap-align: start;
 }
@@ -779,6 +789,7 @@ nav {
 .product-card p {
     min-height: 3.2em;
     margin-bottom: 12px;
+    color: rgba(255, 255, 255, 0.86);
 }
 
 .product-card .product-functions {
@@ -800,10 +811,15 @@ nav {
 .product-card .btn {
     align-self: flex-start;
     flex: 0 0 auto;
+    width: 100%;
     margin-top: auto;
+    text-align: center;
 }
 
-.product-card.card:hover {
+.product-card.card:hover,
+.product-card.card:focus-within {
+    border-color: rgba(245, 196, 0, 0.42);
+    box-shadow: 0 18px 48px rgba(0, 0, 0, 0.34), 0 0 0 1px rgba(245, 196, 0, 0.08);
     transform: translate3d(0, -6px, 0);
 }
 
@@ -1043,13 +1059,15 @@ nav {
     display: flex;
     align-items: center;
     gap: 10px;
-    color: #d6d6d6;
+    color: rgba(255, 255, 255, 0.84);
+    line-height: 1.55;
 }
 
 .product-card h4 {
     display: flex;
     align-items: center;
     gap: 12px;
+    min-height: 3.15em;
     line-height: 1.25;
 }
 
@@ -1537,6 +1555,23 @@ footer a {
 }
 
 @media (max-width: 1024px) {
+    .product-carousel {
+        max-width: calc(100vw - 40px);
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    .product-grid {
+        width: 100%;
+        padding-inline: 0;
+        scroll-padding-inline: 0;
+    }
+
+    .product-card {
+        --product-card-width: min(44vw, 340px);
+        min-height: 540px;
+    }
+
     .section {
         padding: 82px 20px;
     }
@@ -1553,10 +1588,13 @@ footer a {
 
 
 @media (max-width: 720px) {
+    .product-slider-hint {
+        margin-top: -22px;
+    }
+
     .product-card {
         --product-card-width: min(82vw, 330px);
-        height: auto;
-        min-height: 500px;
+        min-height: 520px;
     }
 }
 
@@ -1608,8 +1646,9 @@ footer a {
     }
 
     .product-carousel {
-        margin-left: -14px;
-        margin-right: -14px;
+        max-width: calc(100vw - 28px);
+        margin-left: auto;
+        margin-right: auto;
     }
 
     .product-grid {
@@ -1619,8 +1658,7 @@ footer a {
 
     .product-card {
         --product-card-width: min(86vw, 300px);
-        height: auto;
-        min-height: 500px;
+        min-height: 520px;
     }
 
     .product-card p {
@@ -1703,5 +1741,11 @@ footer a {
     .product-grid.is-infinite {
         animation: none;
         overflow-x: auto;
+        transform: none !important;
+    }
+
+    .product-card.card:hover,
+    .product-card.card:focus-within {
+        transform: none;
     }
 }
