@@ -147,6 +147,10 @@ document.addEventListener("DOMContentLoaded", function () {
         productCarousel.dataset.carouselIntent = intent;
       }
 
+      function setCarouselEdge(edge) {
+        productCarousel.dataset.carouselEdge = edge;
+      }
+
       function wrapCarouselOffset(offset) {
         if (carouselDistance <= 0) return 0;
         return ((offset % carouselDistance) + carouselDistance) % carouselDistance;
@@ -166,6 +170,8 @@ document.addEventListener("DOMContentLoaded", function () {
         const rect = productCarousel.getBoundingClientRect();
         const pointerRatio = Math.min(Math.max((event.clientX - rect.left) / rect.width, 0), 1);
         const distanceFromCenter = Math.abs(pointerRatio - 0.5);
+        const edgeHighlight = 0.22;
+        setCarouselEdge(pointerRatio <= edgeHighlight ? "left" : pointerRatio >= 1 - edgeHighlight ? "right" : "none");
 
         if (distanceFromCenter <= centerPauseRadius) {
           return { velocity: 0, intent: "paused" };
@@ -204,6 +210,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
       function resetDesktopPointerNavigation() {
         pointerIsInsideCarousel = false;
+        setCarouselEdge("none");
         if (!interactionPauseActive) {
           setTargetCarouselVelocity(28, "auto");
         }
@@ -231,6 +238,7 @@ document.addEventListener("DOMContentLoaded", function () {
       setCarouselDistance();
       productCarousel.classList.add("has-infinite");
       productCarousel.dataset.carouselIntent = "auto";
+      productCarousel.dataset.carouselEdge = "none";
       productGrid.classList.add("is-infinite", "is-cursor-driven");
       window.addEventListener("resize", setCarouselDistance);
       window.addEventListener("orientationchange", setCarouselDistance);

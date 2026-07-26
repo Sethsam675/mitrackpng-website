@@ -664,21 +664,24 @@ nav {
     top: 50%;
     z-index: 3;
     display: none;
-    width: 44px;
-    height: 68px;
+    width: 42px;
+    height: 64px;
     place-items: center;
-    border: 1px solid rgba(245, 196, 0, 0.38);
+    border: 1px solid rgba(245, 196, 0, 0.24);
     border-radius: 999px;
-    color: var(--primary-gold);
-    background: linear-gradient(135deg, rgba(12, 12, 12, 0.72), rgba(255, 255, 255, 0.08));
-    box-shadow: 0 14px 40px rgba(0, 0, 0, 0.34), inset 0 1px 0 rgba(255, 255, 255, 0.12);
+    color: rgba(245, 196, 0, 0.72);
+    background: linear-gradient(135deg, rgba(8, 8, 8, 0.62), rgba(255, 255, 255, 0.06));
+    box-shadow: 0 14px 40px rgba(0, 0, 0, 0.28), inset 0 1px 0 rgba(255, 255, 255, 0.1);
     backdrop-filter: blur(14px);
-    font-size: 42px;
-    line-height: 1;
-    opacity: 0.72;
+    opacity: 0.5;
     pointer-events: none;
-    transform: translateY(-50%);
-    transition: opacity 0.25s ease, border-color 0.25s ease, box-shadow 0.25s ease;
+    transform: translateY(-50%) scale(0.96);
+    transition: opacity 0.25s ease, border-color 0.25s ease, box-shadow 0.25s ease, color 0.25s ease, transform 0.25s ease;
+}
+
+.carousel-edge-indicator svg {
+    width: 26px;
+    height: 26px;
 }
 
 .carousel-edge-indicator-left {
@@ -693,11 +696,13 @@ nav {
     display: grid;
 }
 
-.product-carousel.has-infinite[data-carousel-intent="backward"] .carousel-edge-indicator-left,
-.product-carousel.has-infinite[data-carousel-intent="forward"] .carousel-edge-indicator-right {
-    border-color: var(--primary-gold);
+.product-carousel.has-infinite[data-carousel-edge="left"] .carousel-edge-indicator-left,
+.product-carousel.has-infinite[data-carousel-edge="right"] .carousel-edge-indicator-right {
+    border-color: rgba(245, 196, 0, 0.72);
+    color: var(--primary-gold);
     box-shadow: 0 16px 46px rgba(0, 0, 0, 0.42), 0 0 24px rgba(245, 196, 0, 0.18);
-    opacity: 1;
+    opacity: 0.96;
+    transform: translateY(-50%) scale(1);
 }
 
 .product-carousel.has-infinite[data-carousel-intent="paused"] .carousel-edge-indicator {
