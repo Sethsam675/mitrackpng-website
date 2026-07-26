@@ -105,7 +105,7 @@ document.addEventListener("DOMContentLoaded", function () {
   const productCarousel = document.querySelector(".product-carousel");
   const productGrid = document.querySelector(".product-grid");
   const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
-  const desktopPointer = window.matchMedia("(hover: hover) and (pointer: fine) and (min-width: 769px)");
+  const desktopPointer = window.matchMedia("(hover: hover) and (pointer: fine) and (min-width: 901px)");
 
   if (productCarousel && productGrid) {
     const originalCards = Array.from(productGrid.querySelectorAll(".product-card"));
@@ -122,14 +122,15 @@ document.addEventListener("DOMContentLoaded", function () {
         productGrid.appendChild(clone);
       });
 
-      const minPointerSpeed = 18;
-      const maxPointerSpeed = 92;
-      const centerPauseRadius = 0.12;
-      const smoothing = 0.12;
+      const defaultCarouselSpeed = 34;
+      const minPointerSpeed = 30;
+      const maxPointerSpeed = 132;
+      const centerPauseRadius = 0.11;
+      const smoothing = 0.18;
       let carouselDistance = 0;
       let carouselOffset = 0;
       let carouselVelocity = 0;
-      let targetCarouselVelocity = 28;
+      let targetCarouselVelocity = defaultCarouselSpeed;
       let lastFrameTime = null;
       let pointerIsInsideCarousel = false;
       let interactionPauseActive = false;
@@ -170,7 +171,7 @@ document.addEventListener("DOMContentLoaded", function () {
         const rect = productCarousel.getBoundingClientRect();
         const pointerRatio = Math.min(Math.max((event.clientX - rect.left) / rect.width, 0), 1);
         const distanceFromCenter = Math.abs(pointerRatio - 0.5);
-        const edgeHighlight = 0.22;
+        const edgeHighlight = 0.24;
         setCarouselEdge(pointerRatio <= edgeHighlight ? "left" : pointerRatio >= 1 - edgeHighlight ? "right" : "none");
 
         if (distanceFromCenter <= centerPauseRadius) {
@@ -203,7 +204,7 @@ document.addEventListener("DOMContentLoaded", function () {
         productGrid.carouselPauseTimer = window.setTimeout(() => {
           interactionPauseActive = false;
           if (!pointerIsInsideCarousel) {
-            setTargetCarouselVelocity(28, "auto");
+            setTargetCarouselVelocity(defaultCarouselSpeed, "auto");
           }
         }, 1800);
       }
@@ -212,7 +213,7 @@ document.addEventListener("DOMContentLoaded", function () {
         pointerIsInsideCarousel = false;
         setCarouselEdge("none");
         if (!interactionPauseActive) {
-          setTargetCarouselVelocity(28, "auto");
+          setTargetCarouselVelocity(defaultCarouselSpeed, "auto");
         }
       }
 
@@ -242,12 +243,13 @@ document.addEventListener("DOMContentLoaded", function () {
       productGrid.classList.add("is-infinite", "is-cursor-driven");
       window.addEventListener("resize", setCarouselDistance);
       window.addEventListener("orientationchange", setCarouselDistance);
+      reduceMotion.addEventListener("change", () => window.location.reload());
       productCarousel.addEventListener("pointermove", updateDesktopPointerNavigation, { passive: true });
       productCarousel.addEventListener("pointerleave", resetDesktopPointerNavigation);
       productCarousel.addEventListener("focusin", () => setTargetCarouselVelocity(0, "paused"));
       productCarousel.addEventListener("focusout", () => {
         if (!pointerIsInsideCarousel && !interactionPauseActive) {
-          setTargetCarouselVelocity(28, "auto");
+          setTargetCarouselVelocity(defaultCarouselSpeed, "auto");
         }
       });
       window.requestAnimationFrame(animateCarousel);
