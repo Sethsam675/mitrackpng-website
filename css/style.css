@@ -311,7 +311,7 @@ nav {
     height: 100%;
     opacity: 0;
     transform: scale(1.06);
-    animation: aboutSlideShow 50s infinite;
+    animation: aboutSlideShow 60s infinite;
 }
 
 .about-slide::before,
@@ -402,6 +402,14 @@ nav {
     animation-delay: 45s;
 }
 
+.about-slide-11 {
+    animation-delay: 50s;
+}
+
+.about-slide-12 {
+    animation-delay: 55s;
+}
+
 .about-hero-content {
     position: relative;
     z-index: 2;
@@ -428,16 +436,16 @@ nav {
         transform: scale(1.06);
     }
 
-    2.52% {
+    2.1% {
         opacity: 1;
     }
 
-    8% {
+    6.7% {
         opacity: 1;
         transform: scale(1);
     }
 
-    10% {
+    8.33% {
         opacity: 0;
         transform: scale(1);
     }
