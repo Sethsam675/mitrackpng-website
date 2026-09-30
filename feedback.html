@@ -3,6 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="icon" type="image/png" href="favicon.png">
 <title>Feedback & Ratings | MiTrack PNG</title>
 <meta name="description" content="Share your feedback and rate MiTrack PNG's GPS tracking, CCTV, and 24/7 monitoring services.">
 <meta property="og:title" content="Feedback & Ratings | MiTrack PNG">
@@ -42,35 +43,35 @@
     <h2>Submit Your Feedback</h2>
     <p>Rate the service and share your comments to help us serve you better.</p>
   </div>
-  
+
   <div class="card feedback-form-card">
     <form id="feedback-form" action="https://formsubmit.co/ajax/mitrack@mitrack.com.au" method="POST" class="feedback-form">
       <input type="hidden" name="_subject" value="New Feedback from MiTrack PNG website">
       <input type="hidden" name="_template" value="table">
       <input type="hidden" name="_cc" value="garme@mitrack.com.au,paulyoungwatchdog@gmail.com,williamkakao1972@gmail.com">
       <input type="text" name="_honey" class="form-honeypot" tabindex="-1" autocomplete="off">
-      
+
       <div class="form-grid">
         <div class="form-group">
           <label for="feedback-name">Full Name</label>
           <input id="feedback-name" type="text" name="name" placeholder="Enter your full name" autocomplete="name" required>
         </div>
-        
+
         <div class="form-group">
           <label for="feedback-email">Email Address</label>
           <input id="feedback-email" type="email" name="email" placeholder="name@company.com" autocomplete="email" required>
         </div>
-        
+
         <div class="form-group">
           <label for="feedback-phone">Phone Number (Optional)</label>
           <input id="feedback-phone" type="tel" name="phone" placeholder="+675 ..." autocomplete="tel">
         </div>
-        
+
         <div class="form-group">
           <label for="feedback-company">Company/Organization (Optional)</label>
           <input id="feedback-company" type="text" name="company" placeholder="Your company name" autocomplete="organization">
         </div>
-        
+
         <div class="form-group form-group-full">
           <label for="service-type">Service Used</label>
           <select id="service-type" name="service_used" required>
@@ -84,7 +85,7 @@
             <option value="multiple-services">Multiple Services</option>
           </select>
         </div>
-        
+
         <div class="form-group form-group-full">
           <label for="rating-input">Rate Your Experience</label>
           <div class="star-rating-container">
@@ -99,12 +100,12 @@
             <span id="rating-text" class="rating-text">Click to rate</span>
           </div>
         </div>
-        
+
         <div class="form-group form-group-full">
           <label for="feedback-comment">Your Feedback & Comments</label>
           <textarea id="feedback-comment" name="comments" placeholder="Share your experience, suggestions, or any concerns about our services..." rows="6" required></textarea>
         </div>
-        
+
         <div class="form-group form-group-full">
           <label for="recommend-checkbox">
             <input type="checkbox" id="recommend-checkbox" name="would_recommend" value="yes">
@@ -112,12 +113,12 @@
           </label>
         </div>
       </div>
-      
+
       <div class="form-actions">
         <p class="form-note">Thank you for helping us improve our services.</p>
         <button type="submit" class="btn btn-primary">Submit Feedback</button>
       </div>
-      
+
       <p id="feedback-status" class="form-status" aria-live="polite"></p>
       <noscript><p class="form-note">JavaScript is disabled. The form will still submit via a normal page redirect.</p></noscript>
     </form>
@@ -129,7 +130,7 @@
     <h2>Recent Feedback</h2>
     <p>See what other clients say about MiTrack PNG services.</p>
   </div>
-  
+
   <div id="feedback-list" class="feedback-display-grid">
     <div class="feedback-card">
       <div class="feedback-header">
@@ -197,7 +198,7 @@
   <div class="section-title">
     <h2>What Our Clients Rate Most</h2>
   </div>
-  
+
   <div class="grid">
     <div class="stat-card">
       <div class="stat-number">98%</div>
