@@ -120,7 +120,13 @@ img {
 }
 
 .logo {
-    height: 98px;
+    height: 100px;
+}
+
+.logo-link {
+    display: inline-flex;
+    align-items: center;
+    margin-right: 6px;
 }
 
 .nav-links {
@@ -1406,7 +1412,7 @@ footer a {
 
 @media (max-width: 720px) {
     .logo {
-        height: 72px;
+        height: 76px;
     }
 
     .nav-left {
