@@ -120,7 +120,7 @@ img {
 }
 
 .logo {
-    height: 80px;
+    height: 88px;
 }
 
 .nav-links {
@@ -1406,7 +1406,7 @@ footer a {
 
 @media (max-width: 720px) {
     .logo {
-        height: 64px;
+        height: 72px;
     }
 
     .nav-left {
@@ -1498,7 +1498,7 @@ footer a {
     }
 
     .logo {
-        height: 72px;
+        height: 80px;
     }
 
     #primary-navigation {
