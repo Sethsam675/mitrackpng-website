@@ -120,13 +120,13 @@ img {
 }
 
 .logo {
-    height: 100px;
+    height: 150px;
 }
 
 .logo-link {
     display: inline-flex;
     align-items: center;
-    margin-right: 6px;
+    margin-right: 10px;
 }
 
 .nav-links {
