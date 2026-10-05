@@ -1412,11 +1412,16 @@ footer a {
 
 @media (max-width: 720px) {
     .logo {
-        height: 76px;
+        height: 86px;
     }
 
     .nav-left {
         width: 100%;
+        gap: 8px;
+    }
+
+    .logo-link {
+        margin-right: 0;
     }
 
     #nav-toggle {
@@ -1424,13 +1429,15 @@ footer a {
         align-items: center;
         justify-content: center;
         margin-left: auto;
+        width: 42px;
+        height: 42px;
     }
 
     nav {
         flex-wrap: wrap;
         width: min(calc(100% - 20px), 1180px);
         border-radius: 28px;
-        padding: 8px 14px;
+        padding: 8px 12px;
     }
 
     #primary-navigation {
@@ -1648,11 +1655,15 @@ footer a {
 
 @media (max-width: 480px) {
     nav {
-        padding-inline: 10px;
+        padding-inline: 8px;
     }
 
     .logo {
-        height: 54px;
+        height: 64px;
+    }
+
+    .nav-left {
+        gap: 6px;
     }
 
     .section {
